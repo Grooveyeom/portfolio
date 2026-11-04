@@ -61,7 +61,7 @@ QUOTA = """<div class="card">
         <div class="b" style="--h:77.6%"><span>97%</span></div>
       </div>
       <div class="xrow"><span style="flex:1.6">TeamViewer<br>2020–24</span><span>Nitro Q1<br>ramp</span><span>Nitro<br>Q2</span><span>Nitro<br>Q3</span></div>
-      <p class="note">TeamViewer: annual net-new ARR quota as AE, Senior AE and Sales Lead. Nitro: quarterly expansion quota; Q2 is a CRM estimate.</p>
+      <p class="note">TeamViewer: personal annual net-new ARR quota as Account Executive, Senior Account Executive and Sales Lead (Player-Coach). Nitro: quarterly expansion quota; Q2 is a CRM estimate.</p>
     </div>"""
 
 RAMP = """<div class="card">
@@ -159,8 +159,8 @@ PEOPLE = """<div class="g g-111">
 CAREER = """<div class="tl">
     <div class="r"><span class="y">2026–now</span><div class="w"><b>Nitro · Customer Account Executive, APAC</b><span>~480 accounts across ANZ and Southeast Asia, mostly through partners</span></div><span class="k">97% Q3</span></div>
     <div class="r"><span class="y">2025</span><div class="w"><b>Atlassian · Enterprise Development Rep, APAC</b><span>10 qualified opportunities from about 170 accounts</span></div><span class="k">#2 APJ</span></div>
-    <div class="r"><span class="y">2020–24</span><div class="w"><b>TeamViewer · AE → Senior AE → Sales Lead, APAC</b><span>Net-new ARR quota above 100% every year; promoted twice; led five</span></div><span class="k">100%+</span></div>
-    <div class="r"><span class="y">2016–20</span><div class="w"><b>Posway, Ecnesoft · Sydney</b><span>Field, channel and outbound B2B sales</span></div><span class="k"></span></div>
+    <div class="r"><span class="y">2020–24</span><div class="w"><b>TeamViewer · Account Executive → Senior Account Executive → Sales Lead (Player-Coach, APAC)</b><span>Personal net-new ARR quota above 100% every year; promoted twice; led five</span></div><span class="k">100%+</span></div>
+    <div class="r"><span class="y">2018–20</span><div class="w"><b>Posway · Business Development Manager, Sydney</b><span>Cold calling, outbound and channel sales to SMB retail</span></div><span class="k"></span></div>
   </div>"""
 
 def foot(root, other_href, other_label):
@@ -182,11 +182,11 @@ def am(root, other):
     out = HEAD.format(title="Account Manager", desc="Jeonghun Yeom, B2B software account manager in Melbourne. How I run a territory like a portfolio, shown in numbers.", root=root)
     out += top("Account Manager", other, "AE version")
     out += hero("I run my territory like a portfolio.",
-        "Hundreds of accounts, each with a plan for where my time goes, so revenue grows steadily and nothing renews by surprise. 7+ years in B2B software at TeamViewer, Atlassian and Nitro.",
-        [("90.5%", "net revenue retention, churn included", "165 renewals, Apr to Sep 2026"),
+        "Hundreds of accounts, each with a plan for where my time goes, so revenue grows steadily and nothing renews by surprise. 7+ years in B2B sales, including TeamViewer, Atlassian and Nitro.",
+        [("US$344K", "added from existing customers in 2026", "Renewal uplift plus expansion, Jan to Oct"),
          ("+12%", "median per-seat increase at renewal", "85% of renewals priced up"),
-         ("97%", "of expansion quota, first full quarter after ramp", "Nitro, Q3 2026"),
-         ("100%+", "of quota every year for four years", "TeamViewer, net-new ARR")],
+         ("97%", "of expansion quota in Q3 2026", "Nitro, after 106% in the ramp quarter"),
+         ("100%+", "of personal quota every year for four years", "TeamViewer, net-new ARR")],
         [("allocate", "Allocate", "Where my time goes"), ("grow", "Grow", "Where revenue comes from"),
          ("risk", "Protect", "Catching problems early"), ("returns", "Results", "Quota and ramp")])
     out += sh("allocate", "1 · Allocate", "I put my time where the value is", "The few accounts that hold most of the value get my personal time; the rest run on sequences I review, and the smallest are largely automated.")
@@ -194,13 +194,16 @@ def am(root, other):
     out += sh("grow", "2 · Grow", "Revenue from several plays, not one", "Price uplift at renewal, true-ups on over-deployed accounts, e-signature cross-sell (8 of my 12 biggest expansions) and competitive replacements.")
     out += SOURCE + "\n</section>\n"
     out += sh("risk", "3 · Protect", "I find problems before they cost revenue")
-    out += RISK + "\n</section>\n"
+    out += RISK + """
+    <div class="card" style="margin-top:10px"><h3>Net revenue retention: 90.5%</h3><p class="sub">165 renewals, April to September 2026, churn included</p>
+      <p class="t">My book is mostly small businesses buying through resellers. Most of the lost value sat in two places: renewals under US$10K, and partner-led renewals where no one at Nitro had spoken to the customer directly (26% of lost renewal value). Both are now covered by the rules above: a direct contact 90 days out, and a usage check before every renewal.</p></div>
+""" + "\n</section>\n"
     out += sh("returns", "4 · Results", "Consistent results, and a fast ramp")
     out += f'<div class="g g-11">{QUOTA}{RAMP}</div>\n</section>\n'
     out += sh("deals", "", "How my deals are put together", "Several parties on each side. The structure mattered more than the size.")
     out += deals([0, 3, 1, 2]) + "\n</section>\n"
     out += sh("people", "", "How I work with people") + PEOPLE + "\n</section>\n"
-    out += sh("career", "", "Career") + CAREER + "\n</section>\n"
+    out += sh("career", "", "Selected experience", "Full history on my CV and LinkedIn.") + CAREER + "\n</section>\n"
     return out + foot(root, other, "View the AE version")
 
 # ---------- AE page ----------
@@ -209,16 +212,16 @@ def ae(root, other):
     out = HEAD.format(title="Account Executive", desc="Jeonghun Yeom, B2B software Account Executive in Melbourne. New business, competitive wins and territory management, shown in numbers.", root=root)
     out += top("Account Executive", other, "AM version")
     out += hero("I open new accounts, then grow them.",
-        "Four years carrying a net-new ARR quota, then competitive wins and expansion across a territory of about 480 accounts. 7+ years in B2B software at TeamViewer, Atlassian and Nitro.",
-        [("100%+", "of net-new ARR quota every year for four years", "TeamViewer, 2020 to 2024"),
+        "Four years carrying a net-new ARR quota, then competitive wins and expansion across a territory of about 480 accounts. 7+ years in B2B sales, including TeamViewer, Atlassian and Nitro.",
+        [("100%+", "of personal net-new ARR quota every year for four years", "TeamViewer, 2020 to 2024"),
          ("€189K", "enterprise opportunity I sourced and led to validation", "TeamViewer, new product line"),
          ("2", "competitive replacements: Adobe and DocuSign", "Nitro, 2026, both new accounts"),
-         ("97%", "of quota in my first full quarter after ramp", "Nitro, Q3 2026")],
+         ("97%", "of expansion quota in Q3 2026", "Nitro, after 106% in the ramp quarter")],
         [("new", "New business", "Targeting and wins"), ("case", "Enterprise case", "How I ran a large deal"),
          ("deals", "Deals", "How they were put together"), ("territory", "Territory", "Results and focus")])
     out += sh("new", "1 · New business", "How I win new business", "Research first, a reason to talk second, a dated plan third.")
     out += f"""<div class="g g-111">
-    <div class="card"><h3>Net-new quota</h3><div class="big"><b>4 yrs</b><span>above 100%, AE to Sales Lead</span></div><p class="t">TeamViewer net-new ARR, selling to IT managers, engineers and procurement. Top five in APAC in my first year.</p></div>
+    <div class="card"><h3>Net-new quota</h3><div class="big"><b>4 yrs</b><span>above 100%, AE to Sales Lead</span></div><p class="t">TeamViewer net-new ARR, closing my own deals up to €25K with IT managers, engineers and procurement. Top five in APAC in my first year.</p></div>
     <div class="card"><h3>Targeting</h3><div class="big"><b>170 → 10</b><span>accounts to qualified opportunities</span></div><p class="t">Atlassian outbound campaign: researched and mapped each account, second in APJ.</p></div>
     <div class="card"><h3>New customers at Nitro</h3><div class="big"><b>12</b><span>new accounts in 2026</span></div><p class="t">In a role measured on the installed base, including the Adobe and DocuSign replacements and accounts I prospected myself.</p></div>
   </div>
@@ -230,7 +233,7 @@ def ae(root, other):
     out += sh("territory", "4 · Territory", "Results, and where my time goes")
     out += f'<div class="g g-11">{QUOTA}{ALLOCATE}</div>\n' + '<div style="margin-top:10px">' + SOURCE + "</div>\n</section>\n"
     out += sh("people", "", "How I work with people") + PEOPLE + "\n</section>\n"
-    out += sh("career", "", "Career") + CAREER + "\n</section>\n"
+    out += sh("career", "", "Selected experience", "Full history on my CV and LinkedIn.") + CAREER + "\n</section>\n"
     return out + foot(root, other, "View the AM version")
 
 def write(path, html):
