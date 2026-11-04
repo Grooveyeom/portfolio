@@ -93,6 +93,14 @@ section{padding-top:36px}
 .pair .hi b{color:var(--accent)}
 .pair .arrow{font-size:22px;color:var(--muted);padding-bottom:20px}
 
+.ninety{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.ninety .ph{background:var(--bg);border-radius:8px;padding:14px}
+.ninety .ph > b{display:block;font-size:13.5px}
+.ninety .st{display:flex;gap:16px;margin:10px 0 8px}
+.ninety .st span{font-size:12px;color:var(--muted);line-height:1.3}
+.ninety .st em{display:block;font-style:normal;font-size:22px;font-weight:700;color:var(--ink);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.ninety ul{font-size:13px;color:var(--ink2)}
+
 /* table */
 table{width:100%;border-collapse:collapse;font-size:13.5px}
 th{text-align:left;font-weight:600;color:var(--muted);font-size:12px;padding:0 10px 10px 0;border-bottom:1px solid var(--line)}
@@ -131,12 +139,14 @@ footer{padding:36px 0 56px}
 .fine{margin-top:14px;font-size:12px;color:var(--muted)}
 
 @media (max-width:900px){
+  .ninety{grid-template-columns:1fr}
   .qi{grid-template-columns:1fr 1fr}
   .g-21,.g-111{grid-template-columns:1fr}
   .week{grid-template-columns:1fr 1fr}
   .who{grid-template-columns:1fr 1fr}
 }
 @media (max-width:640px){
+  .ninety{grid-template-columns:1fr}
   .top h1{font-size:25px}
   .actions{width:100%}
   .actions .btn{flex:1}
@@ -224,6 +234,21 @@ footer{padding:36px 0 56px}
         <li><b>Nitro:</b> 106% in the ramp quarter</li>
       </ul>
     </div>
+  </div>
+  <div class="card" style="margin-top:10px">
+    <h3>My first 90 days at Nitro</h3><p class="sub">12 January to 11 April 2026 · from my CRM and planning notes</p>
+    <div class="ninety">
+      <div class="ph"><b>Days 1–30 · Learn the book, start closing</b>
+        <div class="st"><span><em>6</em>deals won</span><span><em>3 of 4</em>renewals priced up</span></div>
+        <ul><li>Onboarding with a mentor; Salesforce and CPQ training.</li><li>Shadowed teammates' customer calls.</li><li>Worked Q1 renewals from week one. First win on day 7.</li></ul></div>
+      <div class="ph"><b>Days 31–60 · Raise price, find add-ons</b>
+        <div class="st"><span><em>29</em>deals won</span><span><em>9 of 14</em>renewals priced up</span></div>
+        <ul><li>Moved last year's per-seat price up one step at renewal.</li><li>Found over-deployed accounts: 15 true-ups and seat adds.</li><li>Four expansions through an Indonesian channel partner.</li><li>A customer rejected a 20% rise on a 3-year renewal; I reshaped it into fewer seats plus e-signature at a higher total.</li></ul></div>
+      <div class="ph"><b>Days 61–90 · Turn lessons into a system</b>
+        <div class="st"><span><em>22</em>deals won</span><span><em>7 of 8</em>renewals priced up</span></div>
+        <ul><li>Q1 loss review: low-usage partner accounts churn most. New rule: usage check 90 days before every renewal.</li><li>Full-year plan for 280+ renewals, with 7 "big bet" accounts mapped.</li><li>Q2 expansion plan to close the gap to quota.</li></ul></div>
+    </div>
+    <p class="note">Result: 57 deals won in 90 days, 19 of 26 renewals closed with a price increase, and 106% of both Q1 targets. Deal sizes were small at this stage, so the counts and actions matter more than the dollars.</p>
   </div>
 </section>
 
