@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Jeonghun Yeom, Account Executive</title>
+<meta name="description" content="Jeonghun Yeom, B2B software Account Executive in Melbourne. How I sell, what it produced, and where I am still improving.">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=boska@400,500,400i&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#e8e8e3; --surface:#dcdcd6; --ink:#181715; --muted:#55544f; --accent:#bfb21a; --accent-ink:#181715;
+  --field:#181715; --field-ink:#e8e8e3; --field-muted:#b9b8b1;
+  --f1:#2a2926; --f2:#3b3a35; --f3:#4d4c46;
+  --step-small:clamp(0.875rem,0.85rem + 0.1vw,0.9375rem);
+  --step-body:clamp(1.0625rem,1rem + 0.25vw,1.1875rem);
+  --step-lead:clamp(1.25rem,1.1rem + 0.7vw,1.625rem);
+  --step-display:clamp(3.4rem,9.4vw,9.5rem);
+  --m:clamp(16px,3vw,32px);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Boska",Georgia,serif;font-size:var(--step-body);line-height:1.5;letter-spacing:.005em;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-weight:400;letter-spacing:-.02em;line-height:.98;margin:0}
+p{margin:0}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+::selection{background:var(--accent);color:var(--accent-ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-size:var(--step-body);font-weight:500;border-radius:0;transition:transform .2s var(--ease),background-color .2s}
+.btn:hover{transform:translateY(-2px);background:#d3c524}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn.dark{background:var(--ink);color:var(--bg)}
+.btn.dark:hover{background:#000}
+.photo{filter:grayscale(1) contrast(1.05);object-fit:cover;width:100%;height:100%}
+
+/* HERO: tabbed folder stack */
+.hero{background:var(--field);color:var(--field-ink);min-height:100svh;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.topbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:24px var(--m) 0}
+.topbar .mark{grid-column:2;font-size:1.0625rem;text-decoration:none}
+.topbar .link{justify-self:end;text-decoration:none;font-size:1rem}
+.topbar a:hover{text-decoration:underline;text-underline-offset:4px}
+.hero-copy{text-align:center;padding:clamp(56px,9vh,110px) var(--m) 0}
+.hero h1{font-size:var(--step-display);white-space:nowrap}
+.hero .sub{font-size:var(--step-lead);line-height:1.35;max-width:46ch;margin:22px auto 0;color:var(--field-muted)}
+.folders{position:relative;margin-top:auto;height:min(46svh,460px);width:86%;margin-inline:auto}
+.folder{position:absolute;left:0;right:0;top:calc(var(--i)*64px);bottom:-200px;text-decoration:none;color:var(--ink);transition:transform .35s var(--ease)}
+a.folder:hover,a.folder:focus-visible{transform:translateY(-14px)}
+.folder .tab{position:absolute;top:-40px;height:40px;left:var(--x);padding:0 34px;display:flex;align-items:center;font-size:1.125rem;background:var(--c);clip-path:polygon(14px 0,calc(100% - 14px) 0,100% 100%,0 100%)}
+.folder .body{position:absolute;inset:0;background:var(--c)}
+.folder.front .body{padding:32px}
+.folder.front .body p{max-width:34ch;margin-top:18px}
+
+/* INTRO */
+.intro{padding:140px var(--m) 120px}
+.intro .row1{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}
+.intro h2{grid-column:1/7;font-size:clamp(2.75rem,5vw,4.75rem)}
+.intro .note{grid-column:9/13}
+.facts{display:flex;justify-content:space-between;gap:24px;margin-top:120px;flex-wrap:wrap}
+.fact b{display:block;font-weight:400;font-size:clamp(1.75rem,3vw,2.75rem);line-height:1.05;letter-spacing:-.02em}
+.fact span{display:block;margin-top:8px;font-size:var(--step-small);color:var(--muted)}
+.intro-photo{margin-top:72px;display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.intro-photo p{grid-column:1/5;align-self:end}
+.intro-photo figure{grid-column:6/13;margin:0;aspect-ratio:4/3;overflow:hidden}
+.intro-photo figure img{transition:transform 1.2s var(--ease)}
+.intro-photo figure:hover img{transform:scale(1.04)}
+
+/* STATS: decimal ledger */
+.ledger{background:var(--field);color:var(--field-ink);padding:160px var(--m)}
+.ledger-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.ledger h2{grid-column:1/6;align-self:center;font-size:clamp(2rem,3.2vw,3.25rem)}
+.ledger h2 span{color:var(--field-muted);display:block}
+.figs{grid-column:7/13;display:grid;gap:20px}
+.fig{display:grid;grid-template-columns:minmax(0,4.2fr) minmax(0,1.6fr) minmax(0,4fr);align-items:baseline;column-gap:14px}
+.fig .w{text-align:right}
+.fig .w,.fig .d{font-size:clamp(4rem,7vw,7rem);line-height:1;font-variant-numeric:lining-nums tabular-nums;letter-spacing:-.03em}
+.fig .c{font-size:1rem;line-height:1.4}
+.fig .c em{color:var(--field-muted);font-style:normal;display:block}
+.quarters{margin-top:120px;display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}
+.quarters p{grid-column:1/5;color:var(--field-muted)}
+.qbars{grid-column:6/13;display:flex;gap:16px;align-items:flex-end;height:280px}
+.qbar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.qbar .bar{background:var(--field-ink);height:var(--h);transform-origin:bottom;transition:transform 1s var(--ease)}
+.qbar.hot .bar{background:var(--accent)}
+.qbar span{display:block;margin-top:10px;font-size:1rem}
+.qbar b{font-weight:400;font-size:var(--step-lead);display:block;margin-bottom:8px}
+
+/* FEATURES: stacking colour sheets */
+.habits{padding:160px 0 0}
+.habits > h2{font-size:clamp(2.5rem,5vw,5rem);padding:0 var(--m) 48px}
+.sheet{position:relative;min-height:0;padding-top:0!important;background:var(--c);color:var(--ink2,var(--ink));display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:72px 1fr;gap:0 24px;padding:0 var(--m) 88px}
+.sheet h3{grid-column:1/-1;display:flex;align-items:center;font-size:clamp(1.5rem,2.6vw,2.5rem)}
+.sheet .txt{grid-column:1/6;grid-row:2;align-self:end;max-width:44ch;font-size:1.125rem}
+.sheet .txt p+p{margin-top:14px}
+.sheet .big{grid-column:7/13;grid-row:2;align-self:center;font-size:clamp(4rem,9vw,9rem);line-height:.92;letter-spacing:-.04em}
+.sheet .big .n{display:block}
+.sheet .big .cap{display:block;font-size:var(--step-lead);letter-spacing:0;line-height:1.3;margin-top:18px;max-width:24ch}
+.sheet.dark{--ink2:var(--field-ink)}
+.agents{grid-column:7/13;grid-row:2;align-self:center;display:grid;gap:12px}
+.agents div{background:var(--f2);padding:18px 20px}
+.agents b{font-weight:500;display:block}
+.agents span{color:var(--field-muted);font-size:1rem}
+
+/* LIVE: increase band */
+.band{padding:180px var(--m);display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;align-items:start}
+.band h2{grid-column:1/7;font-size:clamp(2.25rem,4vw,4rem)}
+.band .lead{grid-column:1/6;margin-top:24px}
+.band .ctrl{grid-column:1/7;margin-top:40px;display:flex;flex-wrap:wrap;gap:10px}
+.band .ctrl button{font:inherit;font-size:1.0625rem;min-height:52px;padding:0 22px;border:0;border-radius:0;background:var(--surface);color:var(--ink);cursor:pointer;transition:background-color .2s,transform .2s var(--ease)}
+.band .ctrl button:hover{transform:translateY(-2px)}
+.band .ctrl button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.readout{grid-column:8/13;grid-row:1/span 3;background:var(--surface);padding:40px;min-height:380px;display:flex;flex-direction:column;justify-content:space-between}
+.readout .pct{font-size:clamp(5rem,11vw,10rem);line-height:.9;letter-spacing:-.04em;font-variant-numeric:lining-nums tabular-nums}
+.readout .meter{height:18px;background:var(--bg);margin:28px 0 18px}
+.readout .meter i{display:block;height:100%;background:var(--accent);width:var(--w,80%);transition:width .5s var(--ease)}
+
+/* WORK: deal index with preview */
+.deals{background:var(--field);color:var(--field-ink);padding:160px var(--m)}
+.deals-head{display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;margin-bottom:56px}
+.deals-head h2{font-size:clamp(2.25rem,4vw,4rem)}
+.deals-head p{max-width:42ch;color:var(--field-muted)}
+.index{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.index ul{grid-column:1/7;list-style:none;margin:0;padding:0}
+.index li + li{margin-top:6px}
+.index button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;justify-content:space-between;align-items:baseline;gap:20px;width:100%;padding:18px 22px;background:var(--f1);font-size:clamp(1.25rem,2vw,1.75rem);line-height:1.2;transition:background-color .24s,color .24s,transform .24s var(--ease)}
+.index button span{font-size:1rem;color:var(--field-muted);white-space:nowrap}
+.index button:hover{transform:translateX(6px)}
+.index button[aria-expanded="true"]{background:var(--field-ink);color:var(--ink)}
+.index button[aria-expanded="true"] span{color:var(--muted)}
+.index button:focus-visible{outline:3px solid var(--accent)}
+.case{display:none}
+.no-js .index .case{display:block;padding:20px 22px 24px;background:var(--f1)}
+.no-js .panel{display:none}
+.no-js .index ul{grid-column:1/-1}
+.panel{grid-column:8/13;background:var(--f1);padding:36px;min-height:560px;position:relative}
+.panel .case{display:block;position:absolute;inset:36px;opacity:0;visibility:hidden;transition:opacity .24s,visibility .24s}
+.panel .case.on{opacity:1;visibility:visible}
+.case h3{font-size:var(--step-lead);line-height:1.2;letter-spacing:-.01em}
+.case dl{margin:18px 0 0}
+.case dt{color:var(--field-muted);font-size:1rem;margin-top:14px}
+.case dd{margin:4px 0 0;font-size:1.0625rem}
+.case .so{margin-top:20px;background:var(--f3);padding:14px 16px;font-size:1rem}
+
+/* street band */
+.street{background:var(--field);color:var(--field-ink);padding:0 var(--m) 120px}
+.street figure{margin:0}
+.street img{aspect-ratio:21/8;height:auto;transform-origin:50% 70%}
+.street figcaption{margin-top:14px;font-size:var(--step-small);color:var(--field-muted)}
+@media (max-width:820px){.street{padding-bottom:88px}.street img{aspect-ratio:4/3}}
+
+/* ABOUT: letter on a sheet */
+.letter-ground{position:relative;padding:160px var(--m);overflow:hidden}
+.letter-ground > img{position:absolute;inset:0;z-index:0}
+.sheetpaper{position:relative;z-index:1;width:min(680px,100%);margin:0 auto;background:var(--bg);padding:60px 60px 88px;border-bottom:6px dotted var(--surface);line-height:1.6}
+.sheetpaper p + p{margin-top:18px}
+.sheetpaper mark{background:var(--accent);color:var(--accent-ink);padding:0 3px}
+.sheetpaper .sign{margin-top:32px;font-size:1.375rem;font-style:italic}
+.sheetpaper .role{margin-top:0;font-size:var(--step-small);color:var(--muted)}
+.fixing{margin-top:36px;background:var(--surface);padding:24px 26px}
+.fixing h3{font-size:1.375rem;letter-spacing:-.01em;line-height:1.2}
+.fixing ul{margin:12px 0 0;padding-left:20px}
+.fixing li{font-size:1rem;margin-top:8px}
+
+/* LIST: career as a printed sheet */
+.career{position:relative;padding:160px var(--m);background:var(--field);overflow:hidden}
+.career > img{position:absolute;inset:0;opacity:.6}
+.menu{position:relative;width:min(700px,100%);margin:0 0 0 auto;background:var(--bg);padding:72px 64px;border-top:6px dotted var(--surface);border-bottom:6px dotted var(--surface);text-align:center}
+.menu h2{font-size:clamp(2.25rem,3.6vw,3rem)}
+.menu > p{margin-top:12px;font-size:var(--step-small);color:var(--muted)}
+.grp{margin-top:52px}
+.grp h3{font-size:1.375rem;letter-spacing:-.01em;line-height:1.2}
+.item{display:flex;justify-content:space-between;gap:20px;text-align:left;max-width:540px;margin:16px auto 0}
+.item b{font-weight:500;font-size:1.0625rem}
+.item span.d{display:block;font-size:var(--step-small);color:var(--muted);margin-top:2px}
+.item .y{white-space:nowrap;font-variant-numeric:tabular-nums;font-size:1rem}
+.menu .close{margin-top:52px;font-size:1rem}
+
+/* CONTACT: coupon */
+.contact{padding:140px var(--m)}
+.coupon{position:relative;max-width:1100px;margin:0 auto;background:var(--accent);color:var(--accent-ink);display:grid;grid-template-columns:46% 1fr;min-height:420px}
+.coupon::before,.coupon::after{content:"";position:absolute;left:46%;width:28px;height:28px;margin-left:-14px;border-radius:50%;background:var(--bg)}
+.coupon::before{top:-14px}.coupon::after{bottom:-14px}
+.coupon .l{padding:48px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;border-right:5px dotted var(--bg)}
+.coupon h2{font-size:clamp(2rem,3.4vw,3rem)}
+.coupon .r{padding:48px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.coupon .slot{display:flex;justify-content:space-between;align-items:center;min-height:56px;padding:0 20px;background:#d6ca3c;text-decoration:none;font-size:1.0625rem;transition:transform .2s var(--ease),background-color .2s}
+.coupon .slot:hover{transform:translateX(4px);background:#ddd25a}
+.coupon .btn.dark{width:100%;min-height:56px;margin-top:8px}
+
+/* FOOTER: back of the card */
+footer{background:var(--field);padding:120px var(--m) 48px;overflow:hidden}
+.back{max-width:1100px;margin:0 auto;background:var(--bg);padding:84px 56px 28px;display:grid;grid-template-columns:1fr 1fr;gap:48px;border-top:6px dotted var(--field);font-size:1rem}
+.back .addr{position:relative;padding-top:8px;padding-right:110px}
+.back .addr a{display:block;font-size:1.125rem;margin-bottom:12px;text-decoration:none}
+.back .addr a:hover{text-decoration:underline;text-underline-offset:4px}
+.stamp{position:absolute;right:0;top:0;width:88px;aspect-ratio:3/4;background:var(--surface);padding:6px}
+.imprint{grid-column:1/-1;text-align:center;font-size:var(--step-small);color:var(--muted)}
+.imprint a{color:var(--ink)}
+.wordmark{color:var(--field-ink);font-size:clamp(3rem,13vw,13rem);letter-spacing:-.04em;line-height:.9;margin:72px 0 0;white-space:nowrap;text-align:center}
+
+/* motion */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--d,0)*75ms)}
+.rv.in{opacity:1;transform:none}
+.no-js .rv{opacity:1;transform:none}
+.js .qbars:not(.in) .bar{transform:scaleY(.05)}
+.slow{animation:drift 26s ease-in-out infinite alternate}
+@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.1) translate(-1.5%,-1%)}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  .slow{animation:none}
+  .js .qbars:not(.in) .bar{transform:none}
+  *{transition-duration:.01ms!important}
+}
+
+/* phone */
+@media (max-width:820px){
+  .topbar{padding-top:18px}
+  .hero-copy{padding-top:88px}
+  .hero h1{font-size:15vw;white-space:normal}
+  .hero .sub{font-size:1.0625rem}
+  .folders{width:100%;height:50svh}
+  .folder{top:calc(var(--i)*52px)}
+  .folder .tab{height:32px;top:-32px;font-size:.9375rem;padding:0 20px;left:var(--xm)}
+  .folder.front .body{padding:22px 16px}
+  .folder.front .btn{width:100%}
+  .intro{padding:96px var(--m) 88px}
+  .intro .row1{display:block}
+  .intro h2{font-size:11vw}
+  .intro .note{margin-top:20px}
+  .facts{display:grid;grid-template-columns:1fr 1fr;row-gap:32px;margin-top:64px}
+  .fact b{font-size:1.625rem}
+  .intro-photo{display:block;margin-top:56px}
+  .intro-photo figure{margin-top:24px}
+  .ledger{padding:104px var(--m)}
+  .ledger-grid{display:block}
+  .ledger h2{font-size:1.75rem;margin-bottom:40px}
+  .figs{gap:28px}
+  .fig{grid-template-columns:52% 1fr;row-gap:6px}
+  .fig .w,.fig .d{font-size:15vw}
+  .fig .c{grid-column:1/-1;font-size:.9375rem}
+  .quarters{display:block;margin-top:80px}
+  .qbars{margin-top:28px;height:220px}
+  .habits{padding-top:104px}
+  .sheet{min-height:0;display:block;padding:0 20px 32px}
+  .sheet h3{height:52px;font-size:1.375rem}
+  .sheet .big{font-size:12vw;margin:12px 0 24px}
+  .sheet .big .cap{font-size:1.125rem}
+  .sheet .txt{font-size:1.0625rem}
+  .agents{margin-top:24px}
+  .band{display:block;padding:104px var(--m)}
+  .band .ctrl button{flex:1 1 100%}
+  .readout{margin-top:32px;padding:28px;min-height:0}
+  .deals{padding:104px var(--m)}
+  .index{display:block}
+  .panel{display:none}
+  .case{padding:20px 22px 24px;background:var(--f1)}
+  .case.open{display:block}
+  .letter-ground{padding:96px 0}
+  .sheetpaper{padding:32px 24px 72px}
+  .career{padding:96px 10px}
+  .menu{padding:48px 24px;margin:0 auto}
+  .item{max-width:none}
+  .contact{padding:96px 12px}
+  .coupon{display:block}
+  .coupon::before,.coupon::after{display:none}
+  .coupon .l{border-right:0;border-bottom:5px dotted var(--bg);padding:32px 22px}
+  .coupon .r{padding:28px 22px 32px}
+  footer{padding:88px 0 32px}
+  .back{grid-template-columns:1fr;padding:64px 24px 24px;gap:32px}
+  .back .addr{padding-right:80px}
+  .stamp{width:64px}
+  .wordmark{font-size:14vw}
+}
+</style>
+</head>
+<body class="no-js">
+
+<header class="hero" id="top">
+  <nav class="topbar" aria-label="Main">
+    <a class="mark" href="#top">Jeonghun Yeom</a>
+    <a class="link" href="#contact">Contact</a>
+  </nav>
+  <div class="hero-copy">
+    <h1 class="rv">Jeonghun Yeom</h1>
+    <p class="sub rv" style="--d:1">Account Executive in Melbourne. I grow software renewals through resellers, and I hold price while I do it.</p>
+  </div>
+  <div class="folders">
+    <a class="folder" href="#how" style="--i:0;--c:#4d4c46;--x:4%;--xm:0%;color:#e8e8e3"><span class="tab">How I work</span><span class="body"></span></a>
+    <a class="folder" href="#results" style="--i:1;--c:#6c6b64;--x:24%;--xm:36%;color:#f4f4f0"><span class="tab">Results</span><span class="body"></span></a>
+    <a class="folder" href="#deals" style="--i:2;--c:#8f8e87;--x:44%;--xm:68%"><span class="tab">Deals</span><span class="body"></span></a>
+    <a class="folder" href="#career" style="--i:3;--c:#b5b4ad;--x:63%;--xm:10%"><span class="tab">Career</span><span class="body"></span></a>
+    <div class="folder front" style="--i:4;--c:#e8e8e3;--x:81%;--xm:52%"><span class="tab">Contact</span>
+      <div class="body">
+        <a class="btn" href="mailto:mickey.yeom@gmail.com?subject=Hello%20Jeonghun&amp;body=Hi%20Jeonghun%2C%0A%0AI%20saw%20your%20portfolio%20and%20would%20like%20to%20talk%20about%20">Email me</a>
+        <p>Open to Commercial, Mid-Market and Expansion AE roles in Australia.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="intro" aria-labelledby="intro-h">
+  <div class="row1">
+    <h2 id="intro-h" class="rv">Renewals, on purpose</h2>
+    <p class="note rv" style="--d:1">I look after renewals and expansion for about 480 software customers in Australia, New Zealand and Southeast Asia. Most deals run through resellers and distributors.</p>
+  </div>
+  <div class="facts">
+    <div class="fact rv"><b>7+ years</b><span>in B2B software sales</span></div>
+    <div class="fact rv" style="--d:1"><b>~480</b><span>accounts in my current book</span></div>
+    <div class="fact rv" style="--d:2"><b>3 regions</b><span>Australia, New Zealand, Southeast Asia</span></div>
+    <div class="fact rv" style="--d:3"><b>Bachelor of IT</b><span>University of Newcastle</span></div>
+  </div>
+  <div class="intro-photo">
+    <p class="rv">Based in Melbourne. I have sold from Sydney, Adelaide and Melbourne, to IT, finance and procurement buyers.</p>
+    <figure class="rv" style="--d:1"><img class="photo" src="assets/melbourne-tram.jpg" alt="A tram passing the Federal Coffee Palace on Collins Street, Melbourne, in the 1890s" width="1280" height="1714" loading="lazy" style="object-position:50% 62%"></figure>
+  </div>
+</section>
+
+<section class="ledger" id="results" aria-labelledby="results-h">
+  <div class="ledger-grid">
+    <h2 id="results-h" class="rv"><span>What it produced</span>in 2026 so far</h2>
+    <div class="figs">
+      <div class="fig rv"><span class="w">363</span><span class="d">K</span><span class="c">US$ incremental ACV closed<em>January to October 2026</em></span></div>
+      <div class="fig rv" style="--d:1"><span class="w">97</span><span class="d"></span><span class="c">per cent of my Q3 expansion quota<em>my first full quarter after ramp</em></span></div>
+      <div class="fig rv" style="--d:2"><span class="w">106</span><span class="d"></span><span class="c">per cent of both targets in my ramp quarter<em>renewal and expansion, Q1</em></span></div>
+      <div class="fig rv" style="--d:3"><span class="w">85</span><span class="d"></span><span class="c">per cent of renewals priced up 9.5% or more<em>208 renewal quotes, median +12% per seat</em></span></div>
+      <div class="fig rv" style="--d:4"><span class="w">90</span><span class="d">.5</span><span class="c">per cent net revenue retention<em>165 renewals, April to September, churn included</em></span></div>
+    </div>
+  </div>
+  <div class="quarters">
+    <p class="rv">Incremental ACV closed each quarter, in US$ thousands, from the CRM. I started in January with an inherited book.</p>
+    <div class="qbars" role="img" aria-label="Incremental ACV by quarter: Q1 36 thousand, Q2 125 thousand, Q3 159 thousand US dollars">
+      <div class="qbar" style="--h:22%"><b>36</b><div class="bar"></div><span>Q1, ramp</span></div>
+      <div class="qbar" style="--h:79%"><b>125</b><div class="bar"></div><span>Q2</span></div>
+      <div class="qbar hot" style="--h:100%"><b>159</b><div class="bar"></div><span>Q3</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="habits" id="how" aria-labelledby="how-h">
+  <h2 id="how-h" class="rv">How I work</h2>
+  <article class="sheet" style="--i:0;--c:#dcdcd6">
+    <h3>One number, two months out</h3>
+    <div class="big"><span class="n">+12%</span><p class="cap">median per-seat increase on an under-priced inherited book</p></div>
+    <div class="txt"><p>I take last year's per-seat price and move it up one step. No promotions, and volume pricing is traded for a commitment.</p><p>I open about two months before renewal with the customer's own usage, so a change in tier reads as a fit to how they work.</p></div>
+  </article>
+  <article class="sheet" style="--i:1;--c:#c9c9c2">
+    <h3>Change the deal before the price</h3>
+    <div class="big"><span class="n">Tier, term, seats</span><p class="cap">are what I move when a customer pushes back</p></div>
+    <div class="txt"><p>If the customer objects, I change what they buy before I touch the base price. Each concession comes in steps, tied to one objection and traded for something.</p></div>
+  </article>
+  <article class="sheet" style="--i:2;--c:#b5b4ad">
+    <h3>One ask per email</h3>
+    <div class="big"><span class="n">0.96</span><p class="cap">customer replies for every outbound email I send</p></div>
+    <div class="txt"><p>Every email asks for one thing, with a date. I send few emails per deal and keep each one easy to answer.</p></div>
+  </article>
+  <article class="sheet" style="--i:3;--c:#8f8e87">
+    <h3>Work through the reseller</h3>
+    <div class="big"><span class="n">Brief first</span><p class="cap">the reseller hears about any change before the customer meeting</p></div>
+    <div class="txt"><p>I send quotes to the distributor and chase the purchase order with the reseller. When a customer's staff change, I find the new contacts through the reseller and write to the technical lead directly.</p></div>
+  </article>
+  <article class="sheet dark" style="--i:4;--c:#181715">
+    <h3>A routine I built</h3>
+    <div class="txt"><p>I cannot run 480 accounts from memory, so I built scheduled agents on Claude, the Salesforce CLI, Confluence and Slack.</p><p>A monthly scorecard tests my own sales claims against about 550 renewals of CRM data. Claims the data contradicts stay on it.</p></div>
+    <div class="agents">
+      <div><b>Monday priority list</b><span>Tiers the week's renewals and drafts a first email for the top tier.</span></div>
+      <div><b>Morning meeting brief</b><span>Deal, contract, past emails and questions for each customer call.</span></div>
+      <div><b>Retention tracker</b><span>Retained value for the quarter and the gap left to target.</span></div>
+      <div><b>Deal write-ups</b><span>Situation, action and result for every closed deal, with a ledger against duplicates.</span></div>
+    </div>
+  </article>
+</section>
+
+<section class="band" aria-labelledby="band-h">
+  <h2 id="band-h" class="rv">Small steady increases hold</h2>
+  <p class="lead rv" style="--d:1">My renewals won by count, split by the size of the per-seat increase. Pick a band.</p>
+  <div class="ctrl rv" style="--d:2" role="group" aria-label="Increase band">
+    <button type="button" aria-pressed="true" data-p="80" data-t="All 215 closed renewals, October 2025 to September 2026.">All renewals</button>
+    <button type="button" aria-pressed="false" data-p="90" data-t="61 renewals with a per-seat increase between 10% and 20%.">Increase 10 to 20%</button>
+    <button type="button" aria-pressed="false" data-p="69" data-t="Increases above 20%, mostly on accounts already close to list price. I now cap the increase by how close an account is to list.">Increase over 20%</button>
+  </div>
+  <div class="readout rv" style="--d:1" aria-live="polite">
+    <div><span class="pct" id="pct">80%</span><div class="meter"><i id="meter"></i></div></div>
+    <p id="ptxt">All 215 closed renewals, October 2025 to September 2026.</p>
+  </div>
+</section>
+
+<section class="deals" id="deals" aria-labelledby="deals-h">
+  <div class="deals-head">
+    <h2 id="deals-h" class="rv">Five deals</h2>
+    <p class="rv" style="--d:1">Customers are described by industry, and figures are rounded. Choose a deal to read it.</p>
+  </div>
+  <div class="index">
+    <ul>
+      <li><button type="button" aria-expanded="true" aria-controls="c1">Retail group, New Zealand <span>US$43K ACV</span></button>
+        <div class="case" id="c1"><h3>The order roughly doubled after an early reseller briefing</h3><dl><dt>Situation</dt><dd>A legacy licence model, renewed through a reseller and a distributor. Every contact I had on the account had left or changed role.</dd><dt>What I did</dt><dd>Briefed the reseller six weeks before a licensing change, found new contacts through them, wrote to the security architect directly and set up a single sign-on test that ran to the renewal date.</dd><dt>Result</dt><dd>The customer added single sign-on and roughly doubled the order. My largest deal of the year.</dd></dl><p class="so">The customer was already moving licence models. I take credit for the timing and the position, not the demand.</p></div></li>
+      <li><button type="button" aria-expanded="false" aria-controls="c2">Wealth manager <span>US$17K ACV</span></button>
+        <div class="case" id="c2"><h3>A rejected increase, reshaped instead of discounted</h3><dl><dt>Situation</dt><dd>PDF and e-signature had just been split into separate products, and the CFO rejected the first renewal offer.</dd><dt>What I did</dt><dd>Sized e-signature from their own usage, about 2,500 envelopes a year and 30 senders, and replaced the offer with a pooled plan. Concessions came in steps, each tied to one objection.</dd><dt>Result</dt><dd>Closed in about 39 days at roughly 40% above last year, and the customer took e-signature Enterprise for the first time.</dd></dl></div></li>
+      <li><button type="button" aria-expanded="false" aria-controls="c3">Mining company <span>US$26K ACV</span></button>
+        <div class="case" id="c3"><h3>Their usage made the case</h3><dl><dt>Situation</dt><dd>A discontinued bundle with free e-signature, and more active users than licences.</dd><dt>What I did</dt><dd>Walked through their usage on an 11-minute call, confirmed it in writing the same day, and kept the PDF price where it was so the decision was about seats.</dd><dt>Result</dt><dd>A three-year term with more PDF seats and e-signature added, 18 days after my first email. No price objection on record.</dd></dl></div></li>
+      <li><button type="button" aria-expanded="false" aria-controls="c4">Aerospace and risk services <span>US$16K ACV</span></button>
+        <div class="case" id="c4"><h3>Two competitive replacements</h3><dl><dt>Situation</dt><dd>On a routine call I learned a parent group planned to leave Adobe, with the first contract due in weeks. Separately, a customer had let an e-signature trial lapse while evaluating DocuSign.</dd><dt>What I did</dt><dd>Scoped the group, wrote a dated plan for quote, reseller, PO and licences, and quoted the first company on its own so the date would hold. Reissued the lapsed trial within an hour and agreed a decision date.</dd><dt>Result</dt><dd>95 seats won from Adobe, PO on the planned day. The e-signature deal closed seven days after the opportunity opened, as a three-year Enterprise contract with a CRM integration.</dd></dl></div></li>
+      <li><button type="button" aria-expanded="false" aria-controls="c5">Professional services firm <span>US$6K ACV</span></button>
+        <div class="case" id="c5"><h3>A defence that became a full rollout</h3><dl><dt>Situation</dt><dd>The customer wanted one PDF tool for all staff and was looking at a cheaper, lighter product, mid-contract.</dd><dt>What I did</dt><dd>Said plainly that we had no lightweight version, got approval for additional seats co-termed with the existing agreement in return for a full rollout, and left the existing contract price alone.</dd><dt>Result</dt><dd>All staff moved onto our product on the planned date, and the next renewal covers the larger seat count.</dd></dl><p class="so">I gave ground on the new seats' price to win the standardisation, so I do not count this one as holding price.</p></div></li>
+    </ul>
+    <div class="panel" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="street" aria-label="Melbourne, around 1920">
+  <figure class="rv"><img class="photo slow" src="assets/melbourne-flinders-swanston-1920.jpg" alt="Trams and early cars at the corner of Flinders and Swanston Streets, Melbourne, around 1920" width="1920" height="1127" loading="lazy" style="object-position:50% 70%"><figcaption>Flinders and Swanston Streets, Melbourne, around 1920.</figcaption></figure>
+</section>
+
+<section class="letter-ground" aria-label="Why I sell this way">
+  <img class="photo slow" src="assets/sydney-bridge-construction.jpg" alt="" width="1920" height="1097" loading="lazy">
+  <div class="sheetpaper rv">
+    <p>PDF and e-signature software is easy to swap, and competitors often sell on price. If I discount, customers learn to wait for the discount.</p>
+    <p>So I would rather give every renewal a few reasons to stay: the right tier, volume, term, an integration, or proof of how they already use it. Then <mark>price is one point of comparison among several</mark>.</p>
+    <p>I check this against my own data every month, and I keep the results that go against me.</p>
+    <div class="fixing">
+      <h3>What I am still fixing</h3>
+      <ul>
+        <li>Smaller renewals, US$2K to US$10K, retain less than my larger ones. I now add one direct contact 90 days out.</li>
+        <li>Renewals led by a partner with no direct customer contact lose more value. I contact the customer myself even when a reseller leads.</li>
+        <li>Whether this year's increases hold at next year's renewal. I will know in 2027.</li>
+      </ul>
+    </div>
+    <p class="sign">Jeonghun Yeom</p>
+    <p class="role">Customer Account Executive, APAC</p>
+  </div>
+</section>
+
+<section class="career" id="career" aria-labelledby="career-h">
+  <img class="photo" src="assets/adelaide-king-william-1885.jpg" alt="" width="1920" height="1165" loading="lazy">
+  <div class="menu rv">
+    <h2 id="career-h">Career</h2>
+    <p>Seven years selling B2B software, direct and through partners.</p>
+    <div class="grp">
+      <h3>Nitro, Melbourne</h3>
+      <div class="item"><div><b>Customer Account Executive, APAC</b><span class="d">PDF and e-signature software. Renewals, expansion, resellers.</span></div><span class="y">2026 to now</span></div>
+    </div>
+    <div class="grp">
+      <h3>Atlassian, remote</h3>
+      <div class="item"><div><b>Enterprise Development Representative, APAC</b><span class="d">10 qualified opportunities from about 170 target accounts, second in APJ for the campaign.</span></div><span class="y">2025</span></div>
+    </div>
+    <div class="grp">
+      <h3>TeamViewer, Adelaide</h3>
+      <div class="item"><div><b>Sales Lead, APAC</b><span class="d">110% of a €300K personal quota while leading a team of five.</span></div><span class="y">2022 to 2024</span></div>
+      <div class="item"><div><b>Senior Account Executive</b><span class="d">110%+ of quota in mid-market. Sourced a €189K enterprise opportunity.</span></div><span class="y">2021 to 2022</span></div>
+      <div class="item"><div><b>Account Executive</b><span class="d">Top five in APAC at 110% of annual quota.</span></div><span class="y">2020 to 2021</span></div>
+    </div>
+    <div class="grp">
+      <h3>Before that, Sydney</h3>
+      <div class="item"><div><b>Business Development Manager, Posway</b><span class="d">Retail technology, field and channel sales.</span></div><span class="y">2018 to 2020</span></div>
+      <div class="item"><div><b>IT Sales Representative, Ecnesoft</b><span class="d">Outbound B2B sales of IT products.</span></div><span class="y">2016 to 2017</span></div>
+    </div>
+    <p class="close">Promoted twice in four years at TeamViewer.<br>Languages: English and Korean.</p>
+  </div>
+</section>
+
+<section class="contact" id="contact" aria-labelledby="contact-h">
+  <div class="coupon rv">
+    <div class="l">
+      <h2 id="contact-h">Let's talk about your book</h2>
+      <p>I am looking for Commercial, Mid-Market or Expansion AE roles in Australia. Email is the fastest way to reach me.</p>
+    </div>
+    <div class="r">
+      <a class="slot" href="mailto:mickey.yeom@gmail.com">mickey.yeom@gmail.com <span aria-hidden="true">→</span></a>
+      <a class="slot" href="https://www.linkedin.com/in/jhyeom" rel="noopener">linkedin.com/in/jhyeom <span aria-hidden="true">→</span></a>
+      <a class="slot" href="#career">Melbourne, Victoria <span aria-hidden="true">↑</span></a>
+      <a class="btn dark" href="mailto:mickey.yeom@gmail.com?subject=AE%20role%20conversation&amp;body=Hi%20Jeonghun%2C%0A%0AWe%20have%20a%20role%20that%20may%20suit%20you%3A%20">Start an email</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="back">
+    <div class="msg rv">
+      <h2>Thanks for reading</h2>
+      <p>Figures come from the CRM in US dollars unless stated. Customers are described by industry and size, and results show what happened, not proof of cause.</p>
+    </div>
+    <div class="addr rv" style="--d:1">
+      <span class="stamp"><img class="photo" src="assets/melbourne-collins-1900.jpg" alt="Collins Street, Melbourne, around 1900" width="1024" height="508" loading="lazy" style="object-position:22% 50%"></span>
+      <a href="mailto:mickey.yeom@gmail.com">mickey.yeom@gmail.com</a>
+      <a href="https://www.linkedin.com/in/jhyeom" rel="noopener">LinkedIn</a>
+      <a href="#top">Melbourne, VIC</a>
+      <a href="#results">Back to results</a>
+    </div>
+    <p class="imprint">© 2026 Jeonghun Yeom. Pictures: <a href="https://commons.wikimedia.org/w/index.php?curid=89012390">Federal Coffee Palace tram</a>, J.W. Lindt, CC0; <a href="https://commons.wikimedia.org/w/index.php?curid=104878837">Sydney Harbour Bridge under construction</a>, Blue Mountains Library, CC BY-SA 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=70174423">King William Street, Adelaide, ca 1885</a>, Samuel White Sweet, CC0; <a href="https://www.flickr.com/photos/70994841@N07/8701937284">Collins Street, Melbourne, ca 1900</a>, public domain; <a href="https://commons.wikimedia.org/wiki/File:Elevated_view_looking_south_east_across_the_intersection_of_Flinders_and_Swanston_Streets_in_Melbourne.tif">Flinders and Swanston Streets, ca 1920</a>, public domain. Shown in greyscale.</p>
+  </div>
+  <p class="wordmark" aria-hidden="true">Jeonghun Yeom</p>
+</footer>
+
+<script>
+document.body.classList.remove('no-js');
+document.body.classList.add('js');
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.15});
+document.querySelectorAll('.rv,.qbars').forEach(el => io.observe(el));
+const pct = document.getElementById('pct'), meter = document.getElementById('meter'), ptxt = document.getElementById('ptxt');
+const bandBtns = document.querySelectorAll('.band .ctrl button');
+bandBtns.forEach(b => b.addEventListener('click', () => {
+  bandBtns.forEach(x => x.setAttribute('aria-pressed', x === b));
+  pct.textContent = b.dataset.p + '%'; meter.style.setProperty('--w', b.dataset.p + '%'); ptxt.textContent = b.dataset.t;
+}));
+const panel = document.querySelector('.panel'), btns = [...document.querySelectorAll('.index button')];
+const wide = matchMedia('(min-width:821px)');
+const caseOf = b => document.getElementById(b.getAttribute('aria-controls'));
+const clones = btns.map(b => { const c = caseOf(b).cloneNode(true); c.removeAttribute('id'); panel.appendChild(c); return c; });
+function show(i) {
+  btns.forEach((b, j) => {
+    const on = j === i;
+    b.setAttribute('aria-expanded', on);
+    clones[j].classList.toggle('on', on);
+    caseOf(b).classList.toggle('open', on && !wide.matches);
+  });
+}
+btns.forEach((b, i) => {
+  b.addEventListener('click', () => {
+    if (!wide.matches && b.getAttribute('aria-expanded') === 'true') { b.setAttribute('aria-expanded', false); caseOf(b).classList.remove('open'); return; }
+    show(i);
+  });
+  b.addEventListener('mouseenter', () => { if (wide.matches) show(i); });
+  b.addEventListener('focus', () => { if (wide.matches) show(i); });
+});
+show(0);
+wide.addEventListener('change', () => show(Math.max(0, btns.findIndex(b => b.getAttribute('aria-expanded') === 'true'))));
+</script>
+</body>
+</html>
