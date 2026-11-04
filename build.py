@@ -107,6 +107,17 @@ def deals(order):
         out.append(f'<div class="deal"><div class="hd"><b>{n}</b><span>{tag}</span></div><dl>{dl}</dl></div>')
     return '<div class="g g-11">' + "".join(out) + "</div>"
 
+FULL_CASE = """<div class="case" style="margin-bottom:10px">
+    <h3>TeamViewer · new customer · embedded remote access</h3>
+    <p class="sub">Full cycle, owned by me: inbound lead to close, then expansion the next year</p>
+    <div class="steps">
+      <div><b>Qualify</b>Inbound lead comparing us with other products. They needed remote access built into their own equipment.</div>
+      <div><b>Demo</b>Product presentation and a meeting on the embedded use case.</div>
+      <div><b>Trial</b>Set up a trial and checked progress with them on a regular cadence.</div>
+      <div><b>Close and expand</b>Won the first deal, about €7K (KRW 10M). The next year they added devices and upgraded.</div>
+    </div>
+  </div>"""
+
 TV_CASE = """<div class="case">
     <h3>TeamViewer · enterprise manufacturer · augmented-reality platform</h3>
     <p class="sub">€189K opportunity I sourced on a new product line</p>
@@ -217,7 +228,7 @@ def ae(root, other):
          ("€189K", "enterprise opportunity I sourced and led to validation", "TeamViewer, new product line"),
          ("2", "competitive replacements: Adobe and DocuSign", "Nitro, 2026, both new accounts"),
          ("97%", "of expansion quota in Q3 2026", "Nitro, after 106% in the ramp quarter")],
-        [("new", "New business", "Targeting and wins"), ("case", "Enterprise case", "How I ran a large deal"),
+        [("new", "New business", "Targeting and wins"), ("case", "Cases", "Full cycle and enterprise"),
          ("deals", "Deals", "How they were put together"), ("territory", "Territory", "Results and focus")])
     out += sh("new", "1 · New business", "How I win new business", "Research first, a reason to talk second, a dated plan third.")
     out += f"""<div class="g g-111">
@@ -227,7 +238,7 @@ def ae(root, other):
   </div>
 </section>
 """
-    out += sh("case", "2 · Enterprise case", "A large opportunity, start to purchase order") + TV_CASE + "\n</section>\n"
+    out += sh("case", "2 · Two cases", "One I ran end to end, one I led early", "A small new customer I took from first call to renewal growth, and a large enterprise opportunity I sourced.") + FULL_CASE + TV_CASE + "\n</section>\n"
     out += sh("deals", "3 · Deals", "How my deals are put together", "Several parties on each side: buyers, partners and our own technical team.")
     out += deals([1, 2, 0, 3]) + "\n</section>\n"
     out += sh("territory", "4 · Territory", "Results, and where my time goes")
