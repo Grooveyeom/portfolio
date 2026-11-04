@@ -1,0 +1,245 @@
+#!/usr/bin/env python3
+"""Builds index.html (AM default), am/index.html and ae/index.html from shared sections.
+Edit text here, run `python3 build.py`, then commit and push."""
+import os
+
+HEAD = """<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Jeonghun Yeom, {title}</title>
+<meta name="description" content="{desc}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{root}style.css">
+</head>
+<body>
+"""
+
+def top(role_label, other_href, other_label):
+    return f"""<header class="wrap">
+  <div class="top">
+    <div class="name">Jeonghun Yeom <span>· {role_label} · Melbourne</span></div>
+    <div class="actions">
+      <a class="btn" href="mailto:mickey.yeom@gmail.com?subject=Role%20conversation">Email me</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/jhyeom" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+"""
+
+def hero(h1, sub, kpis, flow):
+    k = "".join(f'<div class="kpi"><b>{b}</b><span>{s}</span><em>{e}</em></div>' for b, s, e in kpis)
+    f = "".join(f'<a href="#{i}"><b><i>{n}</i>{t}</b><span>{d}</span></a>' for n, (i, t, d) in enumerate(flow, 1))
+    return f"""  <div class="hero">
+    <h1>{h1}</h1>
+    <p class="sub">{sub}</p>
+    <div class="kpis">{k}</div>
+    <nav class="flow" aria-label="Sections" style="grid-template-columns:repeat({len(flow)},1fr)">{f}</nav>
+  </div>
+</header>
+<main class="wrap">
+"""
+
+def sh(id_, step, h2, p=""):
+    st = f'<div class="step">{step}</div>' if step else ""
+    pp = f"<p>{p}</p>" if p else ""
+    return f'<section id="{id_}" aria-labelledby="{id_}-h">\n  <div class="sh">{st}<h2 id="{id_}-h">{h2}</h2>{pp}</div>\n'
+
+# ---------- shared blocks ----------
+
+QUOTA = """<div class="card">
+      <h3>Quota attainment</h3><p class="sub">Per cent of quota · dashed line = 100% · blue = at or above</p>
+      <div class="plot" role="img" aria-label="TeamViewer 2020 to 2024 above 100% every year; Nitro Q1 2026 106%, Q2 86%, Q3 97%">
+        <div class="ref" style="bottom:80%"></div>
+        <div class="b hi" style="--h:88%;flex:1.6"><span>100%+ every year</span></div>
+        <div class="b hi" style="--h:84.8%"><span>106%</span></div>
+        <div class="b" style="--h:68.8%"><span>86%</span></div>
+        <div class="b" style="--h:77.6%"><span>97%</span></div>
+      </div>
+      <div class="xrow"><span style="flex:1.6">TeamViewer<br>2020–24</span><span>Nitro Q1<br>ramp</span><span>Nitro<br>Q2</span><span>Nitro<br>Q3</span></div>
+      <p class="note">TeamViewer: annual net-new ARR quota as AE, Senior AE and Sales Lead. Nitro: quarterly expansion quota; Q2 is a CRM estimate.</p>
+    </div>"""
+
+RAMP = """<div class="card">
+      <h3>Ramp at Nitro</h3><p class="sub">Incremental ACV per quarter, US$K, 2026</p>
+      <div class="hbars" role="img" aria-label="Q1 36K, Q2 125K, Q3 159K">
+        <div class="hb"><span class="t">Q1 (ramp)</span><div><div class="fill" style="--w:22.6%"></div></div><span class="n">36</span></div>
+        <div class="hb"><span class="t">Q2</span><div><div class="fill" style="--w:78.6%"></div></div><span class="n">125</span></div>
+        <div class="hb hi"><span class="t">Q3</span><div><div class="fill" style="--w:100%"></div></div><span class="n">159</span></div>
+      </div>
+      <p class="note">First 90 days: 57 deals won, 19 of 26 renewals closed with a price increase, 106% of both Q1 targets.</p>
+    </div>"""
+
+SOURCE = """<div class="card">
+    <h3>Where 2026 revenue came from</h3><p class="sub">Incremental ACV, US$373K across 342 closed deals, January to October</p>
+    <div class="split" role="img" aria-label="Renewal uplift 205K, 55%; expansion in existing accounts 139K, 37%; new customers 28K, 8%">
+      <div style="flex:205;background:var(--accent)">Renewal uplift · 205K</div>
+      <div style="flex:139;background:#5b7fd6">Expansion in existing accounts · 139K</div>
+      <div style="flex:28;background:#93a9e4;color:var(--ink)">New · 28K</div>
+    </div>
+    <div class="legend"><span>Renewal uplift: 183 deals</span><span>Expansion (seats, upgrades, cross-sell): 138 deals</span><span>New customers: 12 accounts, 21 deals</span></div>
+  </div>"""
+
+DEALS = [
+ ("Retail group, New Zealand", "Expansion · US$43K ACV",
+  [("Parties", "Customer IT and security, reseller, distributor"), ("Technical", "Single sign-on test that ran to the renewal date"),
+   ("What I did", "Briefed the reseller six weeks before a licensing change; found new contacts after every old one had left"), ("Outcome", "Order roughly doubled, with SSO")]),
+ ("Aerospace group", "New account · Adobe replaced · 95 seats",
+  [("Parties", "Parent group and subsidiaries, reseller"), ("Structure", "Group-wide scope; one company quoted first so the date would hold"),
+   ("What I did", "Wrote a dated plan for quote, reseller, PO and licences"), ("Outcome", "PO on the planned day; other subsidiaries working from the same plan")]),
+ ("Risk-services firm", "New account · DocuSign replaced · 3-year",
+  [("Parties", "Customer team evaluating DocuSign"), ("Technical", "Trial plus a CRM integration"),
+   ("What I did", "Reissued a lapsed trial within an hour and agreed a decision date"), ("Outcome", "Three-year Enterprise contract, 7 days after the opportunity opened")]),
+ ("Wealth manager", "Renewal · ~40% larger",
+  [("Parties", "CFO, reseller"), ("Structure", "Pooled e-signature plan sized from their own usage"),
+   ("What I did", "After the CFO rejected the first offer, changed the shape of the deal instead of the price"), ("Outcome", "Closed in 39 days; first e-signature Enterprise purchase")]),
+]
+
+def deals(order):
+    out = []
+    for i in order:
+        n, tag, rows = DEALS[i]
+        dl = "".join(f"<dt>{a}</dt><dd>{b}</dd>" for a, b in rows)
+        out.append(f'<div class="deal"><div class="hd"><b>{n}</b><span>{tag}</span></div><dl>{dl}</dl></div>')
+    return '<div class="g g-11">' + "".join(out) + "</div>"
+
+TV_CASE = """<div class="case">
+    <h3>TeamViewer · enterprise manufacturer · augmented-reality platform</h3>
+    <p class="sub">€189K opportunity I sourced on a new product line</p>
+    <div class="steps">
+      <div><b>Source</b>Presented the product at SAP Sapphire Seoul to build industrial pipeline. Sourced and qualified the account.</div>
+      <div><b>Discovery</b>Ran discovery on the use case and presented the business case to the CFO.</div>
+      <div><b>Validate</b>Ran validation with the customer, then handed the technical evaluation to the specialist team.</div>
+      <div><b>Close</b>Supported the commercial owner through to purchase order, which became the first APAC win for that product.</div>
+    </div>
+    <p class="note">I led the early stages. The late technical and commercial stages were run by a specialist team.</p>
+  </div>"""
+
+ALLOCATE = """<div class="card">
+      <h3>2026 renewals: share of accounts vs share of value</h3><p class="sub">256 renewals in my territory</p>
+      <div class="pairs" role="img" aria-label="Renewals over 10K: 16% of accounts, 47% of value. 3K to 10K: 41% of accounts, 37% of value. Under 3K: 43% of accounts, 16% of value">
+        <div class="pr"><div class="t"><b>Tier 1 · US$10K+</b>my time, weekly</div><div class="bars"><div class="row"><div class="fill" style="--w:16%"></div><span>16%</span></div><div class="row val"><div class="fill" style="--w:47%"></div><span>47%</span></div></div></div>
+        <div class="pr"><div class="t"><b>Tier 2 · US$3–10K</b>sequences I review</div><div class="bars"><div class="row"><div class="fill" style="--w:41%"></div><span>41%</span></div><div class="row val"><div class="fill" style="--w:37%"></div><span>37%</span></div></div></div>
+        <div class="pr"><div class="t"><b>Tier 3 · under US$3K</b>largely automated</div><div class="bars"><div class="row"><div class="fill" style="--w:43%"></div><span>43%</span></div><div class="row val"><div class="fill" style="--w:16%"></div><span>16%</span></div></div></div>
+      </div>
+      <div class="legend"><span><i style="background:var(--context)"></i>Share of accounts</span><span><i style="background:var(--accent)"></i>Share of value</span></div>
+    </div>"""
+
+TARGETING = """<div class="card">
+      <h3>Targeting before outreach</h3>
+      <div class="big"><b>170 → 10</b><span>target accounts to qualified opportunities</span></div>
+      <p class="t">At Atlassian I researched and mapped about 170 mid-market, enterprise and strategic accounts, and built 10 qualified opportunities in one campaign, second in APJ.</p>
+      <div class="big"><b>7</b><span>"big bet" accounts in my 2026 plan</span></div>
+      <p class="t">Each with an account map: buyers, partner, contract, expansion path.</p>
+    </div>"""
+
+RISK = """<div class="g g-111">
+    <div class="card"><h3>Starting earlier</h3><p class="sub">Median first contact before renewal</p>
+      <div class="pair"><div><b>9</b><span>days, Q1 2026</span></div><div class="arrow" aria-hidden="true">→</div><div class="hi"><b>63</b><span>days, Q3 2026</span></div></div></div>
+    <div class="card"><h3>Pricing that holds</h3><p class="sub">Renewals won, by size of increase</p>
+      <div class="hbars" role="img" aria-label="All renewals 80%, increase 10 to 20% 90%, over 20% 69%">
+        <div class="hb"><span class="t">All (215)</span><div><div class="fill" style="--w:80%"></div></div><span class="n">80%</span></div>
+        <div class="hb hi"><span class="t">+10 to 20%</span><div><div class="fill" style="--w:90%"></div></div><span class="n">90%</span></div>
+        <div class="hb"><span class="t">Over +20%</span><div><div class="fill" style="--w:69%"></div></div><span class="n">69%</span></div>
+      </div></div>
+    <div class="card"><h3>Rules I changed from my own data</h3>
+      <ul><li>Increases over 20% lost more: now capped by how close an account is to list.</li><li>Partner-led renewals leaked: I now contact the customer directly.</li><li>Low-usage accounts churned: usage check 90 days before every renewal.</li></ul></div>
+  </div>"""
+
+PEOPLE = """<div class="g g-111">
+    <div class="card"><h3>Partners and other teams</h3><div class="mini"><div><b>Resellers and distributors</b>Briefed before the customer; PO chased with the partner</div><div><b>Solutions engineers</b>Trials, SSO and integration scoping, with a decision date</div></div></div>
+    <div class="card"><h3>Peers and leadership</h3><div class="mini"><div><b>Led a team of five</b>1:1s, pipeline and performance reviews, hiring panels</div><div><b>Mentored 15 colleagues</b>on deal execution</div></div></div>
+    <div class="card"><h3>Operating rhythm</h3><div class="mini"><div><b>Weekly</b>Tier review, forecast with my director, one status email per distributor</div><div><b>Own tools</b>10+ scheduled AI agents on Claude, Salesforce and Slack</div></div></div>
+  </div>"""
+
+CAREER = """<div class="tl">
+    <div class="r"><span class="y">2026–now</span><div class="w"><b>Nitro · Customer Account Executive, APAC</b><span>~480 accounts across ANZ and Southeast Asia, mostly through partners</span></div><span class="k">97% Q3</span></div>
+    <div class="r"><span class="y">2025</span><div class="w"><b>Atlassian · Enterprise Development Rep, APAC</b><span>10 qualified opportunities from about 170 accounts</span></div><span class="k">#2 APJ</span></div>
+    <div class="r"><span class="y">2020–24</span><div class="w"><b>TeamViewer · AE → Senior AE → Sales Lead, APAC</b><span>Net-new ARR quota above 100% every year; promoted twice; led five</span></div><span class="k">100%+</span></div>
+    <div class="r"><span class="y">2016–20</span><div class="w"><b>Posway, Ecnesoft · Sydney</b><span>Field, channel and outbound B2B sales</span></div><span class="k"></span></div>
+  </div>"""
+
+def foot(root, other_href, other_label):
+    return f"""</main>
+<footer class="wrap">
+  <div class="contact">
+    <div><h2>Open to Commercial AE and Account Manager roles</h2><p>Australia. English and Korean. References available on request.</p></div>
+    <div class="actions"><a class="btn" href="mailto:mickey.yeom@gmail.com?subject=Role%20conversation">mickey.yeom@gmail.com</a><a class="btn ghost" href="https://www.linkedin.com/in/jhyeom" rel="noopener">LinkedIn</a></div>
+  </div>
+  <p class="fine">Figures are from my own CRM and quota records, in US dollars unless stated and rounded. They describe results and do not prove cause. Customers are not named. <span class="switch"><a href="{other_href}">{other_label}</a></span></p>
+</footer>
+</body>
+</html>
+"""
+
+# ---------- AM page ----------
+
+def am(root, other):
+    out = HEAD.format(title="Account Manager", desc="Jeonghun Yeom, B2B software account manager in Melbourne. How I run a territory like a portfolio, shown in numbers.", root=root)
+    out += top("Account Manager", other, "AE version")
+    out += hero("I run my territory like a portfolio.",
+        "Hundreds of accounts, each with a plan for where my time goes, so revenue grows steadily and nothing renews by surprise. 7+ years in B2B software at TeamViewer, Atlassian and Nitro.",
+        [("90.5%", "net revenue retention, churn included", "165 renewals, Apr to Sep 2026"),
+         ("+12%", "median per-seat increase at renewal", "85% of renewals priced up"),
+         ("97%", "of expansion quota, first full quarter after ramp", "Nitro, Q3 2026"),
+         ("100%+", "of quota every year for four years", "TeamViewer, net-new ARR")],
+        [("allocate", "Allocate", "Where my time goes"), ("grow", "Grow", "Where revenue comes from"),
+         ("risk", "Protect", "Catching problems early"), ("returns", "Results", "Quota and ramp")])
+    out += sh("allocate", "1 · Allocate", "I put my time where the value is", "The few accounts that hold most of the value get my personal time; the rest run on sequences I review, and the smallest are largely automated.")
+    out += f'<div class="g g-21">{ALLOCATE}{TARGETING}</div>\n</section>\n'
+    out += sh("grow", "2 · Grow", "Revenue from several plays, not one", "Price uplift at renewal, true-ups on over-deployed accounts, e-signature cross-sell (8 of my 12 biggest expansions) and competitive replacements.")
+    out += SOURCE + "\n</section>\n"
+    out += sh("risk", "3 · Protect", "I find problems before they cost revenue")
+    out += RISK + "\n</section>\n"
+    out += sh("returns", "4 · Results", "Consistent results, and a fast ramp")
+    out += f'<div class="g g-11">{QUOTA}{RAMP}</div>\n</section>\n'
+    out += sh("deals", "", "How my deals are put together", "Several parties on each side. The structure mattered more than the size.")
+    out += deals([0, 3, 1, 2]) + "\n</section>\n"
+    out += sh("people", "", "How I work with people") + PEOPLE + "\n</section>\n"
+    out += sh("career", "", "Career") + CAREER + "\n</section>\n"
+    return out + foot(root, other, "View the AE version")
+
+# ---------- AE page ----------
+
+def ae(root, other):
+    out = HEAD.format(title="Account Executive", desc="Jeonghun Yeom, B2B software Account Executive in Melbourne. New business, competitive wins and territory management, shown in numbers.", root=root)
+    out += top("Account Executive", other, "AM version")
+    out += hero("I open new accounts, then grow them.",
+        "Four years carrying a net-new ARR quota, then competitive wins and expansion across a territory of about 480 accounts. 7+ years in B2B software at TeamViewer, Atlassian and Nitro.",
+        [("100%+", "of net-new ARR quota every year for four years", "TeamViewer, 2020 to 2024"),
+         ("€189K", "enterprise opportunity I sourced and led to validation", "TeamViewer, new product line"),
+         ("2", "competitive replacements: Adobe and DocuSign", "Nitro, 2026, both new accounts"),
+         ("97%", "of quota in my first full quarter after ramp", "Nitro, Q3 2026")],
+        [("new", "New business", "Targeting and wins"), ("case", "Enterprise case", "How I ran a large deal"),
+         ("deals", "Deals", "How they were put together"), ("territory", "Territory", "Results and focus")])
+    out += sh("new", "1 · New business", "How I win new business", "Research first, a reason to talk second, a dated plan third.")
+    out += f"""<div class="g g-111">
+    <div class="card"><h3>Net-new quota</h3><div class="big"><b>4 yrs</b><span>above 100%, AE to Sales Lead</span></div><p class="t">TeamViewer net-new ARR, selling to IT managers, engineers and procurement. Top five in APAC in my first year.</p></div>
+    <div class="card"><h3>Targeting</h3><div class="big"><b>170 → 10</b><span>accounts to qualified opportunities</span></div><p class="t">Atlassian outbound campaign: researched and mapped each account, second in APJ.</p></div>
+    <div class="card"><h3>New customers at Nitro</h3><div class="big"><b>12</b><span>new accounts in 2026</span></div><p class="t">In a role measured on the installed base, including the Adobe and DocuSign replacements and accounts I prospected myself.</p></div>
+  </div>
+</section>
+"""
+    out += sh("case", "2 · Enterprise case", "A large opportunity, start to purchase order") + TV_CASE + "\n</section>\n"
+    out += sh("deals", "3 · Deals", "How my deals are put together", "Several parties on each side: buyers, partners and our own technical team.")
+    out += deals([1, 2, 0, 3]) + "\n</section>\n"
+    out += sh("territory", "4 · Territory", "Results, and where my time goes")
+    out += f'<div class="g g-11">{QUOTA}{ALLOCATE}</div>\n' + '<div style="margin-top:10px">' + SOURCE + "</div>\n</section>\n"
+    out += sh("people", "", "How I work with people") + PEOPLE + "\n</section>\n"
+    out += sh("career", "", "Career") + CAREER + "\n</section>\n"
+    return out + foot(root, other, "View the AM version")
+
+def write(path, html):
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+    open(path, "w").write(html)
+
+if __name__ == "__main__":
+    here = os.path.dirname(os.path.abspath(__file__))
+    write(os.path.join(here, "index.html"), am("", "ae/"))
+    write(os.path.join(here, "am", "index.html"), am("../", "../ae/"))
+    write(os.path.join(here, "ae", "index.html"), ae("../", "../am/"))
+    print("built index.html, am/index.html, ae/index.html")
