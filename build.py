@@ -108,19 +108,19 @@ def deals(order):
     return '<div class="g g-11">' + "".join(out) + "</div>"
 
 FULL_CASE = """<div class="case" style="margin-bottom:10px">
-    <h3>TeamViewer · new customer · embedded remote access</h3>
+    <h3>TeamViewer · Korean self-service kiosk maker · embedded remote access</h3>
     <p class="sub">Full cycle, owned by me: inbound lead to close, then expansion the next year</p>
     <div class="steps">
-      <div><b>Qualify</b>Inbound lead comparing us with other products. They needed remote access built into their own equipment.</div>
+      <div><b>Qualify</b>Inbound lead comparing us with other products. They needed remote access built into their meal-ticket and restaurant-booking kiosks.</div>
       <div><b>Demo</b>Product presentation and a meeting on the embedded use case.</div>
       <div><b>Trial</b>Set up a trial and checked progress with them on a regular cadence.</div>
-      <div><b>Close and expand</b>Won the first deal, about €7K (KRW 10M). The next year they added devices and upgraded.</div>
+      <div><b>Close and expand</b>Won the first deal, about €7K. The next year they added devices and upgraded.</div>
     </div>
   </div>"""
 
 TV_CASE = """<div class="case">
     <h3>TeamViewer · enterprise manufacturer · augmented-reality platform</h3>
-    <p class="sub">€189K opportunity I sourced on a new product line</p>
+    <p class="sub">€189K opportunity I sourced on a new product line, the largest deal in TeamViewer APAC history</p>
     <div class="steps">
       <div><b>Source</b>Presented the product at SAP Sapphire Seoul to build industrial pipeline. Sourced and qualified the account.</div>
       <div><b>Discovery</b>Ran discovery on the use case and presented the business case to the CFO.</div>
