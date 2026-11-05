@@ -145,11 +145,11 @@ TV_CASE = """<div class="case" style="margin-top:var(--gap)">
 
 ALLOCATE = """<div class="card">
       <h3>2026 renewals by contract size</h3><p class="sub">256 renewals in my territory</p>
-      <div class="pairs" role="img" aria-label="Renewals over 10K: 16% of accounts, 47% of value. 3K to 10K: 41% of accounts, 37% of value">
-        <div class="pr"><div class="t"><b>Tier 1 · US$10K+</b>my time, weekly</div><div class="bars"><div class="row"><div class="fill" style="--w:16%"></div><span>16%</span></div><div class="row val"><div class="fill" style="--w:47%"></div><span>47%</span></div></div></div>
-        <div class="pr"><div class="t"><b>Tier 2 · US$3–10K</b>sequences I review</div><div class="bars"><div class="row"><div class="fill" style="--w:41%"></div><span>41%</span></div><div class="row val"><div class="fill" style="--w:37%"></div><span>37%</span></div></div></div>
+      <div class="s100" role="img" aria-label="Accounts over US$10K: 16% of accounts and 47% of renewal revenue. All other accounts: 84% of accounts and 53% of revenue">
+        <div><p class="lab">Number of accounts</p><div class="bar"><div class="t1" style="flex:16">16%</div><div class="rest" style="flex:84">84%</div></div></div>
+        <div><p class="lab">Renewal revenue</p><div class="bar"><div class="t1" style="flex:47">47%</div><div class="rest" style="flex:53">53%</div></div></div>
       </div>
-      <div class="legend"><span><i style="background:var(--context)"></i>Number of accounts</span><span><i style="background:var(--accent)"></i>Renewal revenue</span></div>
+      <div class="legend"><span><i style="background:var(--accent)"></i>Accounts over US$10K: my time, weekly</span><span><i style="background:var(--context)"></i>All other accounts</span></div>
     </div>"""
 
 TARGETING = """<div class="card">

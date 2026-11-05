@@ -211,3 +211,11 @@ footer{padding:88px 0 40px}
   .flow span{margin-top:0}
 }
 .contact p.lang{margin-top:10px;display:inline-block;padding:4px 12px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:13px;font-weight:600}
+/* 100% stacked comparison */
+.s100{display:grid;gap:20px;margin-top:22px}
+.s100 .lab{margin:0 0 8px;font-size:14px;font-weight:600;color:var(--ink)}
+.s100 .bar{display:flex;height:44px;border-radius:8px;overflow:hidden;gap:3px}
+.s100 .bar div{display:flex;align-items:center;padding:0 14px;font-size:15px;font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.s100 .t1{background:var(--accent);color:#fff}
+.s100 .rest{background:var(--context);color:var(--ink)}
+@media (max-width:520px){.s100 .bar div{padding:0 8px;font-size:13px}}
