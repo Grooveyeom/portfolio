@@ -168,8 +168,8 @@ PROCESS = '<div class="proc">' + "".join([
         <div class="hb"><span class="t">All (215)</span><div><div class="fill" style="--w:80%"></div></div><span class="n">80%</span></div>
         <div class="hb hi"><span class="t">10–20%</span><div><div class="fill" style="--w:90%"></div></div><span class="n">90%</span></div>
         <div class="hb"><span class="t">Over 20%</span><div><div class="fill" style="--w:69%"></div></div><span class="n">69%</span></div></div>"""),
-  proc_step(4, "Reach the customer, not only the partner",
-    "Most of my accounts buy through resellers. I brief the partner first, then speak to the end customer directly.",
+  proc_step(4, "Keep a direct line to every customer",
+    "I sell direct and through resellers. On partner deals I brief the reseller first, then still speak to the end customer myself.",
     "Why: share of lost renewal value",
     '<div class="big" style="margin-top:0"><b>26%</b><span>came from partner-led renewals where no one at Nitro had spoken to the customer</span></div>'),
   proc_step(5, "Spend time where the value is",
@@ -200,7 +200,7 @@ PEOPLE = """<div class="g g-111">
   </div>"""
 
 CAREER = """<div class="tl">
-    <div class="r"><span class="y">2026–now</span><div class="w"><b>Nitro · Customer Account Executive, APAC</b><span>~480 accounts across ANZ and Southeast Asia, mostly through partners</span></div><span class="k">97% Q3</span></div>
+    <div class="r"><span class="y">2026–now</span><div class="w"><b>Nitro · Customer Account Executive, APAC</b><span>~480 accounts across ANZ and Southeast Asia, direct and through partners</span></div><span class="k">97% Q3</span></div>
     <div class="r"><span class="y">2025</span><div class="w"><b>Atlassian · Enterprise Development Rep, APAC</b><span>10 qualified opportunities from about 170 accounts</span></div><span class="k">#2 APJ</span></div>
     <div class="r"><span class="y">2020–24</span><div class="w"><b>TeamViewer · Account Executive → Senior Account Executive → Sales Lead (Player-Coach, APAC)</b><span>Personal net-new ARR quota above 100% every year; promoted twice; led five</span></div><span class="k">100%+</span></div>
     <div class="r"><span class="y">2018–20</span><div class="w"><b>Posway · Business Development Manager, Sydney</b><span>Cold calling, outbound and channel sales to SMB retail</span></div><span class="k"></span></div>
@@ -225,7 +225,7 @@ def am(root, other):
     out = HEAD.format(title="Account Manager", desc="Jeonghun Yeom, B2B software account manager in Melbourne. How I run renewals and handle price objections, with the numbers.", root=root)
     out += top("Account Manager", other, "AE version")
     out += hero("I sell on value, not discount.",
-        "Account Manager at Nitro: about 480 software accounts across ANZ and Southeast Asia, mostly through partners. 7+ years in B2B sales at TeamViewer, Atlassian and Nitro.",
+        "Account Manager at Nitro: about 480 software accounts across ANZ and Southeast Asia, sold direct and through partners. 7+ years in B2B sales at TeamViewer, Atlassian and Nitro.",
         [("US$344K", "added from existing customers", "Renewals and expansion, Jan–Oct 2026"),
          ("8 of 12", "largest expansions included e‑signature cross-sell", "Nitro, 2026"),
          ("97%", "of expansion quota, Q3 2026", "Nitro, after 106% in the ramp quarter"),
