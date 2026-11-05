@@ -211,3 +211,22 @@ main.wrap>section .sh{margin-bottom:28px}
 @media(max-width:800px){main.wrap>section{padding:28px}}
 @media(max-width:520px){main.wrap>section{margin-top:40px;padding:24px 16px;border-radius:12px}.kpi:first-child,.kpi:nth-child(3){padding-left:14px}.card,.deal{padding:20px}}
 @media print{main.wrap>section{background:white!important;border:0;padding:0;margin-top:28px}.kpis{background:white}}
+
+/* Consistent reading alignment and type hierarchy within evidence cards. */
+.card,.deal,.case,.sh,.mini,.tl{text-align:left}
+.big{display:block;margin-top:24px}
+.big b{display:block;font-size:30px;line-height:1.2}
+.big span{display:block;font-size:14px;line-height:1.6;margin-top:8px;max-width:32ch}
+.card h3,.case h3,.deal .hd b{font-size:18px;line-height:1.4;font-weight:600}
+.card .sub,.case .sub,.note,.legend{font-size:14px;line-height:1.6}
+.card p.t,.card ul,.case p,.case .steps div,.mini div,.deal dd{font-size:15px;line-height:1.7}
+.case{padding:28px;border:1px solid var(--line);border-radius:12px}
+.case .steps b,.mini b{font-size:15px;line-height:1.5}
+.deal .hd{display:block}.deal .hd span{display:block;margin-top:8px}
+.pair{align-items:flex-start;gap:20px}.pair b{font-size:30px;line-height:1.2}.pair span{font-size:14px;line-height:1.6}.pair .arrow{align-self:center;padding:0}
+.pr{align-items:start}.pr .t{font-size:14px;line-height:1.5}
+.hb{grid-template-columns:minmax(86px,1.1fr) minmax(30px,1fr) 44px;font-size:14px}
+.mini{gap:16px}.mini div{padding:16px}.tl .w b{font-size:16px;line-height:1.5}.tl .w span{font-size:15px;line-height:1.7}
+.section-links{gap:8px 36px}.section-links a{font-size:15px}
+@media(max-width:520px){.case{padding:20px}.section-links{gap:4px 24px}.pr{grid-template-columns:1fr}.deal dl{gap:4px}.deal dt{font-size:13px;margin-top:12px}.big b{font-size:28px}}
+

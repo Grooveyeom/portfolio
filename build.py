@@ -39,7 +39,7 @@ def hero(h1, sub, kpis, flow):
     <h1>{h1}</h1>
     <p class="sub">{sub}</p>
     <div class="kpis">{k}</div>
-    <nav class="section-nav" aria-label="Explore my work"><p class="nav-label">Explore my work</p><div class="section-links">{f}</div></nav>
+    <nav class="section-nav" aria-label="On this page"><p class="nav-label">On this page</p><div class="section-links">{f}</div></nav>
   </div>
 </header>
 <main class="wrap" id="main">
@@ -191,8 +191,7 @@ def am(root, other):
          ("~480", "customer accounts across ANZ and Southeast Asia", "Nitro · renewals and expansion"),
          ("97%", "of expansion quota in Q3 2026", "Nitro, after 106% in the ramp quarter"),
          ("100%+", "of personal quota every year for four years", "TeamViewer, net-new ARR")],
-        [("deals", "Customer deals", ""), ("allocate", "Account management", ""),
-         ("grow", "Revenue growth", ""), ("risk", "Retention", ""), ("returns", "Performance", "")])
+        [("deals", "Selected deals", ""), ("allocate", "How I work", ""), ("returns", "Track record", "")])
     out += sh("deals", "", "Selected customer deals", "Examples of how I worked through technical requirements, pricing objections and purchasing deadlines.")
     out += deals([0, 3, 1, 2]) + "\n</section>\n"
     out += sh("allocate", "Account management", "How I prioritise a territory of 480 accounts", "I plan account coverage around renewal value. Larger accounts receive weekly attention; smaller accounts follow structured outreach and automated reminders.")
@@ -221,8 +220,7 @@ def ae(root, other):
          ("€189K", "enterprise opportunity I sourced and led to validation", "TeamViewer, new product line"),
          ("2", "competitive replacements: Adobe and DocuSign", "Nitro, 2026, both new accounts"),
          ("97%", "of expansion quota in Q3 2026", "Nitro, after 106% in the ramp quarter")],
-        [("new", "New business", "Targeting and wins"), ("case", "Sales case studies", "Full cycle and enterprise"),
-         ("deals", "Customer deals", "How they were put together"), ("territory", "Territory performance", "Results and focus")])
+        [("new", "How I work", ""), ("case", "Selected deals", ""), ("territory", "Track record", "")])
     out += sh("new", "1 · New business", "How I win new business", "I research the account, establish a customer need and agree the next decision with the buyer.")
     out += f"""<div class="g g-111">
     <div class="card"><h3>Net-new quota</h3><div class="big"><b>4 yrs</b><span>above 100%, AE to Sales Lead</span></div><p class="t">TeamViewer net-new ARR, closing my own deals up to €25K with IT managers, engineers and procurement. Top five in APAC in my first year.</p></div>
@@ -250,4 +248,5 @@ if __name__ == "__main__":
     write(os.path.join(here, "am", "index.html"), am("../", "../ae/"))
     write(os.path.join(here, "ae", "index.html"), ae("../", "../am/"))
     print("built index.html, am/index.html, ae/index.html")
+
 
