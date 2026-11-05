@@ -210,3 +210,4 @@ footer{padding:88px 0 40px}
   .flow b{margin-top:0;font-size:15px}
   .flow span{margin-top:0}
 }
+.contact p.lang{margin-top:10px;display:inline-block;padding:4px 12px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:13px;font-weight:600}

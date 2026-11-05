@@ -195,7 +195,7 @@ def foot(root, other_href, other_label):
     return f"""</main>
 <footer class="wrap">
   <div class="contact">
-    <div><h2>Open to Commercial AE and Account Manager roles</h2><p>Australia. English and Korean. References available on request.</p></div>
+    <div><h2>Open to Commercial AE and Account Manager roles</h2><p>Australia · References available on request</p><p class="lang">Bilingual: English and Korean (native)</p></div>
     <div class="actions"><a class="btn" href="mailto:mickey.yeom@gmail.com?subject=Role%20conversation">mickey.yeom@gmail.com</a><a class="btn ghost" href="https://www.linkedin.com/in/jhyeom" rel="noopener">LinkedIn</a></div>
   </div>
   <p class="fine">Figures are from my own CRM and quota records, in US dollars unless stated and rounded. They describe results and do not prove cause. Customers are not named. <span class="switch"><a href="{other_href}">{other_label}</a></span></p>
