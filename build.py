@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Builds index.html (AM default), am/index.html and ae/index.html from shared sections.
-Edit text here, run `python3 build.py`, then commit and push."""
+Edit text here, run `python3 build.py`, then commit and push.
+Copy rules: short, precise sentences; every number that matters is shown as a chart or a big figure."""
 import os
 
 HEAD = """<!doctype html>
@@ -34,12 +35,12 @@ def top(role_label, other_href, other_label):
 
 def hero(h1, sub, kpis, flow):
     k = "".join(f'<div class="kpi"><b>{b}</b><span>{s}</span><em>{e}</em></div>' for b, s, e in kpis)
-    f = "".join(f'<a href="#{i}">{t}</a>' for i, t, d in flow)
+    f = "".join(f'<a href="#{i}"><b><i>{n}</i>{t}</b><span>{d}</span></a>' for n, (i, t, d) in enumerate(flow, 1))
     return f"""  <div class="hero">
     <h1>{h1}</h1>
     <p class="sub">{sub}</p>
     <div class="kpis">{k}</div>
-    <nav class="section-nav" aria-label="On this page"><p class="nav-label">On this page</p><div class="section-links">{f}</div></nav>
+    <nav class="flow" aria-label="Sections" style="grid-template-columns:repeat({len(flow)},1fr)">{f}</nav>
   </div>
 </header>
 <main class="wrap" id="main">
@@ -52,10 +53,18 @@ def sh(id_, step, h2, p=""):
 
 # ---------- shared blocks ----------
 
-QUOTA = """<div class="card"><h3>Quota attainment</h3>
-<p class="sub">Nitro · quarterly expansion quota · 2026</p>
-<table class="results-table"><thead><tr><th scope="col">Period</th><th scope="col">Attainment</th></tr></thead><tbody><tr><th scope="row">Q1 · ramp</th><td>106%</td></tr><tr><th scope="row">Q2 · CRM estimate</th><td>86%</td></tr><tr><th scope="row">Q3</th><td>97%</td></tr></tbody></table>
-<p class="note">At TeamViewer, I exceeded my personal annual net-new ARR quota for four years, progressing from Account Executive to Sales Lead. This annual measure is separate from Nitro's quarterly expansion target.</p></div>"""
+QUOTA = """<div class="card">
+      <h3>Quota attainment</h3><p class="sub">Dashed line = 100% · blue = at or above</p>
+      <div class="plot" role="img" aria-label="TeamViewer 2020 to 2024 above 100% every year; Nitro Q1 2026 106%, Q2 86%, Q3 97%">
+        <div class="ref" style="bottom:80%"></div>
+        <div class="b hi" style="--h:88%;flex:1.6"><span>100%+ every year</span></div>
+        <div class="b hi" style="--h:84.8%"><span>106%</span></div>
+        <div class="b" style="--h:68.8%"><span>86%</span></div>
+        <div class="b" style="--h:77.6%"><span>97%</span></div>
+      </div>
+      <div class="xrow"><span style="flex:1.6">TeamViewer<br>2020–24</span><span>Nitro Q1<br>ramp</span><span>Nitro<br>Q2</span><span>Nitro<br>Q3</span></div>
+      <p class="note">TeamViewer: personal net-new ARR quota. Nitro: quarterly expansion quota; Q2 is a CRM estimate.</p>
+    </div>"""
 
 RAMP = """<div class="card">
       <h3>Ramp at Nitro</h3><p class="sub">Incremental ACV per quarter, US$K, 2026</p>
@@ -64,32 +73,42 @@ RAMP = """<div class="card">
         <div class="hb"><span class="t">Q2</span><div><div class="fill" style="--w:78.6%"></div></div><span class="n">125</span></div>
         <div class="hb hi"><span class="t">Q3</span><div><div class="fill" style="--w:100%"></div></div><span class="n">159</span></div>
       </div>
-      <p class="note">First 90 days: 57 deals won, 19 of 26 renewals closed with a price increase, 106% of both Q1 targets.</p>
+      <p class="note">First 90 days: 57 deals won; 19 of 26 renewals closed with a price increase.</p>
     </div>"""
 
 SOURCE = """<div class="card">
-    <h3>Where 2026 revenue came from</h3><p class="sub">Incremental annual contract value (ACV), approximately US$373K across 342 closed deals, January to October 2026. Components are rounded separately.</p>
+    <h3>Where 2026 revenue came from</h3><p class="sub">Incremental ACV, US$373K, 342 closed deals, Jan–Oct 2026 (rounded)</p>
     <div class="split" role="img" aria-label="Renewal uplift 205K, 55%; expansion in existing accounts 139K, 37%; new customers 28K, 8%">
       <div style="flex:205;background:var(--accent)">Renewal uplift · 205K</div>
-      <div style="flex:139;background:#5b7fd6">Expansion in existing accounts · 139K</div>
-      <div style="flex:28;background:#93a9e4;color:var(--ink)">New · 28K</div>
+      <div style="flex:139;background:#5b7fd6">Expansion · 139K</div>
+      <div style="flex:28;background:#93a9e4;color:var(--ink)">28K</div>
     </div>
-    <div class="legend"><span>Renewal uplift: 183 deals</span><span>Expansion (seats, upgrades, cross-sell): 138 deals</span><span>New customers: 12 accounts, 21 deals</span></div>
+    <div class="legend"><span>Renewal uplift: 183 deals</span><span>Expansion: 138 deals</span><span>New customers · 28K: 12 accounts</span></div>
+  </div>"""
+
+ESIGN = """<div class="card">
+    <h3>E-signature cross-sell</h3><p class="sub">My 12 largest expansions, 2026</p>
+    <div class="dots" role="img" aria-label="8 of 12 largest expansions included e-signature">""" + '<i class="on"></i>' * 8 + "<i></i>" * 4 + """</div>
+    <div class="big"><b>8 of 12</b><span>included e-signature</span></div>
   </div>"""
 
 DEALS = [
  ("Retail group, New Zealand", "Expansion · US$43K ACV",
-  [("Parties", "Customer IT and security, reseller, distributor"), ("Technical", "Single sign-on test that ran to the renewal date"),
-   ("What I did", "Briefed the reseller six weeks before a licensing change; found new contacts after every old one had left"), ("Outcome", "Order roughly doubled, with SSO")]),
+  [("Challenge", "SSO test running up to the renewal date; every original contact had left"),
+   ("What I did", "Briefed the reseller six weeks before a licensing change; rebuilt the contact map"),
+   ("Result", "Order roughly doubled, with SSO")]),
  ("Aerospace group", "New account · Adobe replaced · 95 seats",
-  [("Parties", "Parent group and subsidiaries, reseller"), ("Structure", "Group-wide scope; one company quoted first so the date would hold"),
-   ("What I did", "Wrote a dated plan for quote, reseller, PO and licences"), ("Outcome", "PO on the planned day; other subsidiaries working from the same plan")]),
+  [("Challenge", "Group-wide scope across subsidiaries and a reseller"),
+   ("What I did", "Quoted one company first, with a dated plan for quote, PO and licences"),
+   ("Result", "PO on the planned day; other subsidiaries following the same plan")]),
  ("Risk-services firm", "New account · DocuSign replaced · 3-year",
-  [("Parties", "Customer team evaluating DocuSign"), ("Technical", "Trial plus a CRM integration"),
-   ("What I did", "Reissued a lapsed trial within an hour and agreed a decision date"), ("Outcome", "Three-year Enterprise contract, 7 days after the opportunity opened")]),
+  [("Challenge", "Evaluating DocuSign; needed a CRM integration"),
+   ("What I did", "Reissued a lapsed trial within an hour and agreed a decision date"),
+   ("Result", "3-year Enterprise contract, 7 days after the opportunity opened")]),
  ("Wealth manager", "Renewal · ~40% larger",
-  [("Parties", "CFO, reseller"), ("Structure", "Pooled e-signature plan sized from their own usage"),
-   ("What I did", "After the CFO rejected the first offer, changed the shape of the deal instead of the price"), ("Outcome", "Closed in 39 days; first e-signature Enterprise purchase")]),
+  [("Challenge", "CFO rejected the first offer"),
+   ("What I did", "Changed the deal shape, not the price: a pooled e-signature plan sized from their usage"),
+   ("Result", "Closed in 39 days; first e-signature Enterprise purchase")]),
 ]
 
 def deals(order):
@@ -100,27 +119,27 @@ def deals(order):
         out.append(f'<div class="deal"><div class="hd"><b>{n}</b><span>{tag}</span></div><dl>{dl}</dl></div>')
     return '<div class="g g-11">' + "".join(out) + "</div>"
 
-FULL_CASE = """<div class="case" style="margin-bottom:10px">
-    <h3>TeamViewer · Korean self-service kiosk maker · embedded remote access</h3>
-    <p class="sub">Full cycle, owned by me: inbound lead to close, then expansion the next year</p>
+FULL_CASE = """<div class="case">
+    <h3>TeamViewer · self-service kiosk maker, Korea</h3>
+    <p class="sub">Inbound lead to close, then expansion the next year · all stages mine</p>
     <div class="steps">
-      <div><b>Qualify</b>Inbound lead comparing us with other products. They needed remote access built into their meal-ticket and restaurant-booking kiosks.</div>
-      <div><b>Demo</b>Product presentation and a meeting on the embedded use case.</div>
-      <div><b>Trial</b>Set up a trial and checked progress with them on a regular cadence.</div>
-      <div><b>Close and expand</b>Won the first deal, about €7K. The next year they added devices and upgraded.</div>
+      <div><b>Qualify</b>Comparing products; needed remote access inside meal-ticket and booking kiosks.</div>
+      <div><b>Demo</b>Presented the embedded use case.</div>
+      <div><b>Trial</b>Ran the trial with regular check-ins.</div>
+      <div><b>Close and expand</b>First deal about €7K. Added devices and upgraded the next year.</div>
     </div>
   </div>"""
 
-TV_CASE = """<div class="case">
-    <h3>TeamViewer · enterprise manufacturer · augmented-reality platform</h3>
-    <p class="sub">€189K opportunity I sourced on a new product line, the largest deal in TeamViewer APAC history</p>
+TV_CASE = """<div class="case" style="margin-top:var(--gap)">
+    <h3>TeamViewer · enterprise manufacturer · augmented reality</h3>
+    <p class="sub">€189K opportunity I sourced · largest deal in TeamViewer APAC history</p>
     <div class="steps">
-      <div><b>Source</b>Presented the product at SAP Sapphire Seoul to build industrial pipeline. Sourced and qualified the account.</div>
-      <div><b>Discovery</b>Ran discovery on the use case and presented the business case to the CFO.</div>
-      <div><b>Validate</b>Ran validation with the customer, then handed the technical evaluation to the specialist team.</div>
-      <div><b>Close</b>Supported the commercial owner through to purchase order, which became the first APAC win for that product.</div>
+      <div><b>Source</b>Presented at SAP Sapphire Seoul; sourced and qualified the account.</div>
+      <div><b>Discovery</b>Ran discovery; presented the business case to the CFO.</div>
+      <div><b>Validate</b>Ran validation, then handed the technical evaluation to specialists.</div>
+      <div><b>Close</b>Supported the commercial owner to PO: first APAC win for the product.</div>
     </div>
-    <p class="note">I led the early stages. The late technical and commercial stages were run by a specialist team.</p>
+    <p class="note">I led the early stages; a specialist team ran the late stages.</p>
   </div>"""
 
 ALLOCATE = """<div class="card">
@@ -135,24 +154,29 @@ ALLOCATE = """<div class="card">
 
 TARGETING = """<div class="card">
       <h3>Targeting before outreach</h3>
-      <div class="big"><b>170 → 10</b><span>target accounts to qualified opportunities</span></div>
-      <p class="t">At Atlassian I researched and mapped about 170 mid-market, enterprise and strategic accounts, and built 10 qualified opportunities in one campaign, second in APJ.</p>
+      <div class="big"><b>170 → 10</b><span>accounts researched → qualified opportunities</span></div>
+      <p class="t">Atlassian, one campaign. #2 in APJ.</p>
       <div class="big"><b>7</b><span>priority accounts in my 2026 plan</span></div>
-      <p class="t">Each with an account map: buyers, partner, contract, expansion path.</p>
+      <p class="t">Each mapped: buyers, partner, contract, expansion path.</p>
     </div>"""
 
 RISK = """<div class="g g-111">
-    <div class="card"><h3>Starting earlier</h3><p class="sub">Median first contact before renewal</p>
-      <div class="pair"><div><b>9</b><span>days, Q1 2026</span></div><div class="arrow" aria-hidden="true">→</div><div class="hi"><b>63</b><span>days, Q3 2026</span></div></div></div>
-    <div class="card"><h3>Renewal win rates by price increase</h3><p class="sub">Renewals won, by size of increase</p>
+    <div class="card"><h3>First contact before renewal</h3><p class="sub">Median days before renewal date</p>
+      <div class="hbars" role="img" aria-label="Q1 2026 9 days, Q3 2026 63 days">
+        <div class="hb"><span class="t">Q1 2026</span><div><div class="fill" style="--w:14.3%"></div></div><span class="n">9</span></div>
+        <div class="hb hi"><span class="t">Q3 2026</span><div><div class="fill" style="--w:100%"></div></div><span class="n">63</span></div>
+      </div></div>
+    <div class="card"><h3>Win rate by price increase</h3><p class="sub">Share of renewals won</p>
       <div class="hbars" role="img" aria-label="All renewals 80%, increase 10 to 20% 90%, over 20% 69%">
         <div class="hb"><span class="t">All (215)</span><div><div class="fill" style="--w:80%"></div></div><span class="n">80%</span></div>
         <div class="hb hi"><span class="t">+10 to 20%</span><div><div class="fill" style="--w:90%"></div></div><span class="n">90%</span></div>
         <div class="hb"><span class="t">Over +20%</span><div><div class="fill" style="--w:69%"></div></div><span class="n">69%</span></div>
       </div></div>
-    <div class="card"><h3>Rules I changed from my own data</h3>
-      <ul><li>Increases over 20% lost more: now capped by how close an account is to list.</li><li>Lost partner-led renewals highlighted gaps in customer contact. I now contact customers directly.</li><li>Low-usage accounts churned: usage check 90 days before every renewal.</li></ul></div>
-  </div>"""
+    <div class="card"><h3>Rules from my data</h3>
+      <ul><li>Increases over 20%: capped by distance from list price.</li><li>Partner-led renewals: I contact the customer directly.</li><li>Low usage: usage check 90 days before renewal.</li></ul></div>
+  </div>
+  <div class="card" style="margin-top:var(--gap)"><h3>Net revenue retention: 90.5%</h3><p class="sub">165 renewals, Apr–Sep 2026, churn included</p>
+    <p class="t">Lost value sat in renewals under US$10K and in partner-led renewals with no direct Nitro contact (26% of lost value). The rules above now cover both.</p></div>"""
 
 PEOPLE = """<div class="g g-111">
     <div class="card"><h3>Partners and other teams</h3><div class="mini"><div><b>Resellers and distributors</b>Briefed before the customer; PO chased with the partner</div><div><b>Solutions engineers</b>Trials, SSO and integration scoping, with a decision date</div></div></div>
@@ -183,28 +207,29 @@ def foot(root, other_href, other_label):
 # ---------- AM page ----------
 
 def am(root, other):
-    out = HEAD.format(title="Account Manager", desc="Jeonghun Yeom, B2B software account manager in Melbourne. Customer growth, renewals and selected sales cases.", root=root)
+    out = HEAD.format(title="Account Manager", desc="Jeonghun Yeom, B2B software account manager in Melbourne. Renewals, expansion and quota results, shown in numbers.", root=root)
     out += top("Account Manager", other, "AE version")
-    out += hero("I help software customers renew, expand and switch with confidence.",
-        "I manage around 480 customer accounts across ANZ and Southeast Asia at Nitro. My work brings together customer discovery, commercial negotiation and reseller coordination. Previously at TeamViewer and Atlassian; 7+ years in B2B sales.",
-        [("US$344K", "incremental annual contract value from existing customers", "Renewal uplift plus expansion, Jan to Oct"),
-         ("~480", "customer accounts across ANZ and Southeast Asia", "Nitro · renewals and expansion"),
-         ("97%", "of expansion quota in Q3 2026", "Nitro, after 106% in the ramp quarter"),
-         ("100%+", "of personal quota every year for four years", "TeamViewer, net-new ARR")],
-        [("deals", "Selected deals", ""), ("allocate", "How I work", ""), ("returns", "Track record", "")])
-    out += sh("deals", "Customer deals", "Selected customer deals", "Examples of how I worked through technical requirements, pricing objections and purchasing deadlines.")
-    out += deals([0, 3, 1, 2]) + "\n</section>\n"
-    out += sh("allocate", "Account management", "How I prioritise a territory of 480 accounts", "I plan account coverage around renewal value. Larger accounts receive weekly attention; smaller accounts follow structured outreach and automated reminders.")
+    out += hero("I grow renewal and expansion revenue across 480 software accounts.",
+        "Nitro, ANZ and Southeast Asia. 7+ years in B2B sales at TeamViewer, Atlassian and Nitro.",
+        [("US$344K", "added from existing customers", "Renewal uplift + expansion, Jan–Oct 2026"),
+         ("+12%", "median per-seat increase at renewal", "85% of renewals priced up"),
+         ("97%", "of expansion quota, Q3 2026", "Nitro, after 106% in the ramp quarter"),
+         ("100%+", "of personal quota, four years running", "TeamViewer, net-new ARR")],
+        [("allocate", "Prioritise", "256 renewals by value"), ("grow", "Grow", "Where US$373K came from"),
+         ("risk", "Retain", "Win rates and NRR"), ("returns", "Results", "Quota and ramp"),
+         ("deals", "Deals", "Four customer deals")])
+    out += sh("allocate", "1 · Prioritise", "47% of renewal value sits in 16% of accounts",
+        "Those accounts get my time every week. The rest run on sequences I review or on automation.")
     out += f'<div class="g g-21">{ALLOCATE}{TARGETING}</div>\n</section>\n'
-    out += sh("grow", "Revenue growth", "How I grow existing customer revenue", "I review usage with customers to identify additional seats, suitable plans and e-signature needs. E-signature featured in eight of my twelve largest expansions, alongside renewal price increases and competitive replacements.")
-    out += SOURCE + "\n</section>\n"
-    out += sh("risk", "Retention", "What retention data changed about my approach")
-    out += RISK + """
-    <div class="card" style="margin-top:24px"><h3>Net revenue retention: 90.5%</h3><p class="sub">165 renewals, April to September 2026, churn included</p>
-      <p class="t">My book is mostly small businesses buying through resellers. Most of the lost value sat in two places: renewals under US$10K, and partner-led renewals where no one at Nitro had spoken to the customer directly (26% of lost renewal value). Both are now covered by the rules above: a direct contact 90 days out, and a usage check before every renewal.</p></div>
-""" + "\n</section>\n"
-    out += sh("returns", "Performance", "Performance against target")
+    out += sh("grow", "2 · Grow", "55% of new revenue came from renewal uplift",
+        "The rest: expansion in existing accounts (US$139K) and new customers (US$28K).")
+    out += f'<div class="g g-21">{SOURCE}{ESIGN}</div>\n</section>\n'
+    out += sh("risk", "3 · Retain", "Earlier contact, capped price increases")
+    out += RISK + "\n</section>\n"
+    out += sh("returns", "4 · Results", "Above quota four years running; 97% in Q3 at Nitro")
     out += f'<div class="g g-11">{QUOTA}{RAMP}</div>\n</section>\n'
+    out += sh("deals", "5 · Deals", "Four deals: what I did and the result")
+    out += deals([0, 3, 1, 2]) + "\n</section>\n"
     out += sh("people", "Working style", "How I work with people") + PEOPLE + "\n</section>\n"
     out += sh("career", "Experience", "Selected experience", "Full history on my CV and LinkedIn.") + CAREER + "\n</section>\n"
     return out + foot(root, other, "View the AE version")
@@ -215,27 +240,29 @@ def ae(root, other):
     out = HEAD.format(title="Account Executive", desc="Jeonghun Yeom, B2B software Account Executive in Melbourne. New business, competitive wins and territory management, shown in numbers.", root=root)
     out += top("Account Executive", other, "AM version")
     out += hero("I open new accounts, then grow them.",
-        "Four years carrying a net-new ARR quota, then competitive wins and expansion across a territory of about 480 accounts. 7+ years in B2B sales, including TeamViewer, Atlassian and Nitro.",
-        [("100%+", "of personal net-new ARR quota every year for four years", "TeamViewer, 2020 to 2024"),
-         ("€189K", "enterprise opportunity I sourced and led to validation", "TeamViewer, new product line"),
-         ("2", "competitive replacements: Adobe and DocuSign", "Nitro, 2026, both new accounts"),
-         ("97%", "of expansion quota in Q3 2026", "Nitro, after 106% in the ramp quarter")],
-        [("new", "How I work", ""), ("case", "Selected deals", ""), ("territory", "Track record", "")])
-    out += sh("new", "1 · New business", "How I win new business", "I research the account, establish a customer need and agree the next decision with the buyer.")
+        "Four years above net-new ARR quota at TeamViewer. Adobe and DocuSign replacements at Nitro. 7+ years in B2B sales.",
+        [("100%+", "of net-new ARR quota, four years running", "TeamViewer, 2020–2024"),
+         ("€189K", "enterprise opportunity I sourced", "TeamViewer, new product line"),
+         ("2", "competitive replacements: Adobe, DocuSign", "Nitro, 2026, both new accounts"),
+         ("97%", "of expansion quota, Q3 2026", "Nitro, after 106% in the ramp quarter")],
+        [("new", "New business", "Quota and targeting"), ("case", "Cases", "Two sales, step by step"),
+         ("deals", "Deals", "Four customer deals"), ("territory", "Territory", "Quota and focus")])
+    out += sh("new", "1 · New business", "Four years above net-new quota",
+        "Research the account, find the need, agree the next decision date.")
     out += f"""<div class="g g-111">
-    <div class="card"><h3>Net-new quota</h3><div class="big"><b>4 yrs</b><span>above 100%, AE to Sales Lead</span></div><p class="t">TeamViewer net-new ARR, closing my own deals up to €25K with IT managers, engineers and procurement. Top five in APAC in my first year.</p></div>
-    <div class="card"><h3>Targeting</h3><div class="big"><b>170 → 10</b><span>accounts to qualified opportunities</span></div><p class="t">Atlassian outbound campaign: researched and mapped each account, second in APJ.</p></div>
-    <div class="card"><h3>New customers at Nitro</h3><div class="big"><b>12</b><span>new accounts in 2026</span></div><p class="t">In a role measured on the installed base, including the Adobe and DocuSign replacements and accounts I prospected myself.</p></div>
+    <div class="card"><h3>Net-new quota</h3><div class="big"><b>4 yrs</b><span>above 100%, AE to Sales Lead</span></div><p class="t">TeamViewer net-new ARR. Own deals up to €25K. Top five in APAC in year one.</p></div>
+    <div class="card"><h3>Targeting</h3><div class="big"><b>170 → 10</b><span>accounts researched → qualified opportunities</span></div><p class="t">Atlassian, one campaign. #2 in APJ.</p></div>
+    <div class="card"><h3>New customers at Nitro</h3><div class="big"><b>12</b><span>new accounts in 2026</span></div><p class="t">In an installed-base role. Includes the Adobe and DocuSign replacements.</p></div>
   </div>
 </section>
 """
-    out += sh("case", "2 · Two cases", "A full-cycle sale and an enterprise opportunity", "A small new customer I took from first call to renewal growth, and a large enterprise opportunity I sourced.") + FULL_CASE + TV_CASE + "\n</section>\n"
-    out += sh("deals", "3 · Deals", "Selected customer deals", "My role, the people involved and the outcome of each deal.")
+    out += sh("case", "2 · Cases", "One sale end to end, one enterprise deal sourced") + FULL_CASE + TV_CASE + "\n</section>\n"
+    out += sh("deals", "3 · Deals", "Four deals: what I did and the result")
     out += deals([1, 2, 0, 3]) + "\n</section>\n"
     out += sh("territory", "4 · Territory", "Results, and where my time goes")
-    out += f'<div class="g g-11">{QUOTA}{ALLOCATE}</div>\n' + '<div style="margin-top:24px">' + SOURCE + "</div>\n</section>\n"
-    out += sh("people", "5 · Working style", "How I work with people") + PEOPLE + "\n</section>\n"
-    out += sh("career", "6 · Experience", "Selected experience", "Full history on my CV and LinkedIn.") + CAREER + "\n</section>\n"
+    out += f'<div class="g g-11">{QUOTA}{ALLOCATE}</div>\n' + '<div style="margin-top:var(--gap)">' + SOURCE + "</div>\n</section>\n"
+    out += sh("people", "Working style", "How I work with people") + PEOPLE + "\n</section>\n"
+    out += sh("career", "Experience", "Selected experience", "Full history on my CV and LinkedIn.") + CAREER + "\n</section>\n"
     return out + foot(root, other, "View the AM version")
 
 def write(path, html):
@@ -248,5 +275,3 @@ if __name__ == "__main__":
     write(os.path.join(here, "am", "index.html"), am("../", "../ae/"))
     write(os.path.join(here, "ae", "index.html"), ae("../", "../am/"))
     print("built index.html, am/index.html, ae/index.html")
-
-
