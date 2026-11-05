@@ -192,7 +192,7 @@ def am(root, other):
          ("97%", "of expansion quota in Q3 2026", "Nitro, after 106% in the ramp quarter"),
          ("100%+", "of personal quota every year for four years", "TeamViewer, net-new ARR")],
         [("deals", "Selected deals", ""), ("allocate", "How I work", ""), ("returns", "Track record", "")])
-    out += sh("deals", "", "Selected customer deals", "Examples of how I worked through technical requirements, pricing objections and purchasing deadlines.")
+    out += sh("deals", "Customer deals", "Selected customer deals", "Examples of how I worked through technical requirements, pricing objections and purchasing deadlines.")
     out += deals([0, 3, 1, 2]) + "\n</section>\n"
     out += sh("allocate", "Account management", "How I prioritise a territory of 480 accounts", "I plan account coverage around renewal value. Larger accounts receive weekly attention; smaller accounts follow structured outreach and automated reminders.")
     out += f'<div class="g g-21">{ALLOCATE}{TARGETING}</div>\n</section>\n'
@@ -205,8 +205,8 @@ def am(root, other):
 """ + "\n</section>\n"
     out += sh("returns", "Performance", "Performance against target")
     out += f'<div class="g g-11">{QUOTA}{RAMP}</div>\n</section>\n'
-    out += sh("people", "", "How I work with people") + PEOPLE + "\n</section>\n"
-    out += sh("career", "", "Selected experience", "Full history on my CV and LinkedIn.") + CAREER + "\n</section>\n"
+    out += sh("people", "Working style", "How I work with people") + PEOPLE + "\n</section>\n"
+    out += sh("career", "Experience", "Selected experience", "Full history on my CV and LinkedIn.") + CAREER + "\n</section>\n"
     return out + foot(root, other, "View the AE version")
 
 # ---------- AE page ----------
@@ -234,8 +234,8 @@ def ae(root, other):
     out += deals([1, 2, 0, 3]) + "\n</section>\n"
     out += sh("territory", "4 · Territory", "Results, and where my time goes")
     out += f'<div class="g g-11">{QUOTA}{ALLOCATE}</div>\n' + '<div style="margin-top:24px">' + SOURCE + "</div>\n</section>\n"
-    out += sh("people", "", "How I work with people") + PEOPLE + "\n</section>\n"
-    out += sh("career", "", "Selected experience", "Full history on my CV and LinkedIn.") + CAREER + "\n</section>\n"
+    out += sh("people", "5 · Working style", "How I work with people") + PEOPLE + "\n</section>\n"
+    out += sh("career", "6 · Experience", "Selected experience", "Full history on my CV and LinkedIn.") + CAREER + "\n</section>\n"
     return out + foot(root, other, "View the AM version")
 
 def write(path, html):
