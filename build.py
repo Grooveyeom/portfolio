@@ -34,12 +34,12 @@ def top(role_label, other_href, other_label):
 
 def hero(h1, sub, kpis, flow):
     k = "".join(f'<div class="kpi"><b>{b}</b><span>{s}</span><em>{e}</em></div>' for b, s, e in kpis)
-    f = "".join(f'<a href="#{i}"><b><i>{n}</i>{t}</b><span>{d}</span></a>' for n, (i, t, d) in enumerate(flow, 1))
+    f = "".join(f'<a href="#{i}">{t}<span aria-hidden="true"> ↓</span></a>' for i, t, d in flow)
     return f"""  <div class="hero">
     <h1>{h1}</h1>
     <p class="sub">{sub}</p>
     <div class="kpis">{k}</div>
-    <nav class="flow" aria-label="Sections" style="grid-template-columns:repeat({len(flow)},1fr)">{f}</nav>
+    <nav class="section-nav" aria-label="Explore my work"><p class="nav-label">Explore my work</p><div class="section-links">{f}</div></nav>
   </div>
 </header>
 <main class="wrap" id="main">
@@ -191,20 +191,20 @@ def am(root, other):
          ("~480", "customer accounts across ANZ and Southeast Asia", "Nitro · renewals and expansion"),
          ("97%", "of expansion quota in Q3 2026", "Nitro, after 106% in the ramp quarter"),
          ("100%+", "of personal quota every year for four years", "TeamViewer, net-new ARR")],
-        [("deals", "Customer deals", "My role and the outcome"), ("grow", "Grow", "Where revenue comes from"),
-         ("risk", "Protect", "Catching problems early"), ("returns", "Results", "Quota and ramp")])
+        [("deals", "Customer deals", ""), ("allocate", "Account management", ""),
+         ("grow", "Revenue growth", ""), ("risk", "Retention", ""), ("returns", "Performance", "")])
     out += sh("deals", "", "Selected customer deals", "Examples of how I worked through technical requirements, pricing objections and purchasing deadlines.")
     out += deals([0, 3, 1, 2]) + "\n</section>\n"
-    out += sh("allocate", "1 · Allocate", "How I prioritise a territory of 480 accounts", "I plan account coverage around renewal value. Larger accounts receive weekly attention; smaller accounts follow structured outreach and automated reminders.")
+    out += sh("allocate", "Account management", "How I prioritise a territory of 480 accounts", "I plan account coverage around renewal value. Larger accounts receive weekly attention; smaller accounts follow structured outreach and automated reminders.")
     out += f'<div class="g g-21">{ALLOCATE}{TARGETING}</div>\n</section>\n'
-    out += sh("grow", "2 · Grow", "How I grow existing customer revenue", "I review usage with customers to identify additional seats, suitable plans and e-signature needs. E-signature featured in eight of my twelve largest expansions, alongside renewal price increases and competitive replacements.")
+    out += sh("grow", "Revenue growth", "How I grow existing customer revenue", "I review usage with customers to identify additional seats, suitable plans and e-signature needs. E-signature featured in eight of my twelve largest expansions, alongside renewal price increases and competitive replacements.")
     out += SOURCE + "\n</section>\n"
-    out += sh("risk", "3 · Protect", "What retention data changed about my approach")
+    out += sh("risk", "Retention", "What retention data changed about my approach")
     out += RISK + """
     <div class="card" style="margin-top:24px"><h3>Net revenue retention: 90.5%</h3><p class="sub">165 renewals, April to September 2026, churn included</p>
       <p class="t">My book is mostly small businesses buying through resellers. Most of the lost value sat in two places: renewals under US$10K, and partner-led renewals where no one at Nitro had spoken to the customer directly (26% of lost renewal value). Both are now covered by the rules above: a direct contact 90 days out, and a usage check before every renewal.</p></div>
 """ + "\n</section>\n"
-    out += sh("returns", "4 · Results", "Performance against target")
+    out += sh("returns", "Performance", "Performance against target")
     out += f'<div class="g g-11">{QUOTA}{RAMP}</div>\n</section>\n'
     out += sh("people", "", "How I work with people") + PEOPLE + "\n</section>\n"
     out += sh("career", "", "Selected experience", "Full history on my CV and LinkedIn.") + CAREER + "\n</section>\n"
@@ -221,8 +221,8 @@ def ae(root, other):
          ("€189K", "enterprise opportunity I sourced and led to validation", "TeamViewer, new product line"),
          ("2", "competitive replacements: Adobe and DocuSign", "Nitro, 2026, both new accounts"),
          ("97%", "of expansion quota in Q3 2026", "Nitro, after 106% in the ramp quarter")],
-        [("new", "New business", "Targeting and wins"), ("case", "Cases", "Full cycle and enterprise"),
-         ("deals", "Deals", "How they were put together"), ("territory", "Territory", "Results and focus")])
+        [("new", "New business", "Targeting and wins"), ("case", "Sales case studies", "Full cycle and enterprise"),
+         ("deals", "Customer deals", "How they were put together"), ("territory", "Territory performance", "Results and focus")])
     out += sh("new", "1 · New business", "How I win new business", "I research the account, establish a customer need and agree the next decision with the buyer.")
     out += f"""<div class="g g-111">
     <div class="card"><h3>Net-new quota</h3><div class="big"><b>4 yrs</b><span>above 100%, AE to Sales Lead</span></div><p class="t">TeamViewer net-new ARR, closing my own deals up to €25K with IT managers, engineers and procurement. Top five in APAC in my first year.</p></div>

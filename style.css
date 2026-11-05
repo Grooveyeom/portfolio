@@ -187,3 +187,13 @@ section{padding-top:96px;scroll-margin-top:24px}.sh{margin-bottom:30px}.sh .step
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 @media print{section{padding-top:28px}.hero{padding-top:24px}.card,.deal{break-inside:avoid}.skip-link,.flow,.actions{display:none}}
 .deal .hd{flex-wrap:wrap;gap:12px}.deal .hd span{white-space:normal;overflow-wrap:anywhere}
+
+/* Navigation is a separate contents list, independent of the KPI columns. */
+.section-nav{margin-top:48px;padding:24px 28px;background:#f0f1ed;border-radius:8px}
+.nav-label{font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.section-links{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:center}
+.section-links a{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:14px;font-weight:600;text-decoration:underline;text-decoration-color:#b3bdbf;text-underline-offset:5px}
+.section-links a span{color:var(--accent);font-size:16px}
+.section-links a:hover{color:var(--accent)}
+@media(max-width:520px){.section-nav{margin-top:36px;padding:20px}.section-links{gap:4px 20px}}
+@media print{.section-nav{display:none}}
