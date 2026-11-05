@@ -35,12 +35,12 @@ def top(role_label, other_href, other_label):
 
 def hero(h1, sub, kpis, flow):
     k = "".join(f'<div class="kpi"><b>{b}</b><span>{s}</span><em>{e}</em></div>' for b, s, e in kpis)
-    f = "".join(f'<a href="#{i}"><b><i>{n}</i>{t}</b><span>{d}</span></a>' for n, (i, t, d) in enumerate(flow, 1))
+    f = "".join(f'<a href="#{i}"><i>{n:02d}</i><b>{t}</b><span>{d}</span></a>' for n, (i, t, d) in enumerate(flow, 1))
     return f"""  <div class="hero">
     <h1>{h1}</h1>
     <p class="sub">{sub}</p>
     <div class="kpis">{k}</div>
-    <nav class="flow" aria-label="Sections" style="grid-template-columns:repeat({len(flow)},1fr)">{f}</nav>
+    <nav class="toc" aria-label="On this page"><p class="toc-label">On this page</p><div class="flow" style="grid-template-columns:repeat({len(flow)},1fr)">{f}</div></nav>
   </div>
 </header>
 <main class="wrap" id="main">
@@ -144,10 +144,9 @@ TV_CASE = """<div class="case" style="margin-top:var(--gap)">
 
 ALLOCATE = """<div class="card">
       <h3>2026 renewals: share of accounts vs share of value</h3><p class="sub">256 renewals in my territory</p>
-      <div class="pairs" role="img" aria-label="Renewals over 10K: 16% of accounts, 47% of value. 3K to 10K: 41% of accounts, 37% of value. Under 3K: 43% of accounts, 16% of value">
+      <div class="pairs" role="img" aria-label="Renewals over 10K: 16% of accounts, 47% of value. 3K to 10K: 41% of accounts, 37% of value">
         <div class="pr"><div class="t"><b>Tier 1 · US$10K+</b>my time, weekly</div><div class="bars"><div class="row"><div class="fill" style="--w:16%"></div><span>16%</span></div><div class="row val"><div class="fill" style="--w:47%"></div><span>47%</span></div></div></div>
         <div class="pr"><div class="t"><b>Tier 2 · US$3–10K</b>sequences I review</div><div class="bars"><div class="row"><div class="fill" style="--w:41%"></div><span>41%</span></div><div class="row val"><div class="fill" style="--w:37%"></div><span>37%</span></div></div></div>
-        <div class="pr"><div class="t"><b>Tier 3 · under US$3K</b>largely automated</div><div class="bars"><div class="row"><div class="fill" style="--w:43%"></div><span>43%</span></div><div class="row val"><div class="fill" style="--w:16%"></div><span>16%</span></div></div></div>
       </div>
       <div class="legend"><span><i style="background:var(--context)"></i>Share of accounts</span><span><i style="background:var(--accent)"></i>Share of value</span></div>
     </div>"""
@@ -176,7 +175,7 @@ RISK = """<div class="g g-111">
       <ul><li>Increases over 20%: capped by distance from list price.</li><li>Partner-led renewals: I contact the customer directly.</li><li>Low usage: usage check 90 days before renewal.</li></ul></div>
   </div>
   <div class="card" style="margin-top:var(--gap)"><h3>Net revenue retention: 90.5%</h3><p class="sub">165 renewals, Apr–Sep 2026, churn included</p>
-    <p class="t">Lost value sat in renewals under US$10K and in partner-led renewals with no direct Nitro contact (26% of lost value). The rules above now cover both.</p></div>"""
+    <p class="t">26% of lost value came from partner-led renewals with no direct Nitro contact. I now contact those customers directly.</p></div>"""
 
 PEOPLE = """<div class="g g-111">
     <div class="card"><h3>Partners and other teams</h3><div class="mini"><div><b>Resellers and distributors</b>Briefed before the customer; PO chased with the partner</div><div><b>Solutions engineers</b>Trials, SSO and integration scoping, with a decision date</div></div></div>
@@ -219,7 +218,7 @@ def am(root, other):
          ("risk", "Retain", "Win rates and NRR"), ("returns", "Results", "Quota and ramp"),
          ("deals", "Deals", "Four customer deals")])
     out += sh("allocate", "1 · Prioritise", "47% of renewal value sits in 16% of accounts",
-        "Those accounts get my time every week. The rest run on sequences I review or on automation.")
+        "Those accounts get my personal time every week.")
     out += f'<div class="g g-21">{ALLOCATE}{TARGETING}</div>\n</section>\n'
     out += sh("grow", "2 · Grow", "55% of new revenue came from renewal uplift",
         "The rest: expansion in existing accounts (US$139K) and new customers (US$28K).")
