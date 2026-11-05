@@ -211,8 +211,8 @@ def am(root, other):
     out += top("Account Manager", other, "AE version")
     out += hero("I grow renewal and expansion revenue across 480 software accounts.",
         "Nitro, ANZ and Southeast Asia. 7+ years in B2B sales at TeamViewer, Atlassian and Nitro.",
-        [("US$344K", "added from existing customers", "Renewal uplift + expansion, Jan–Oct 2026"),
-         ("+12%", "median per-seat increase at renewal", "85% of renewals priced up"),
+        [("US$344K", "added from existing customers", "Renewals and expansion, Jan–Oct 2026"),
+         ("8 of 12", "largest expansions included e‑signature cross-sell", "Nitro, 2026"),
          ("97%", "of expansion quota, Q3 2026", "Nitro, after 106% in the ramp quarter"),
          ("100%+", "of personal quota, four years running", "TeamViewer, net-new ARR")],
         [("allocate", "Prioritise", "256 renewals by value"), ("grow", "Grow", "Where US$373K came from"),
