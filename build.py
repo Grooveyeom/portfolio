@@ -34,7 +34,7 @@ def top(role_label, other_href, other_label):
 
 def hero(h1, sub, kpis, flow):
     k = "".join(f'<div class="kpi"><b>{b}</b><span>{s}</span><em>{e}</em></div>' for b, s, e in kpis)
-    f = "".join(f'<a href="#{i}">{t}<span aria-hidden="true"> ↓</span></a>' for i, t, d in flow)
+    f = "".join(f'<a href="#{i}">{t}</a>' for i, t, d in flow)
     return f"""  <div class="hero">
     <h1>{h1}</h1>
     <p class="sub">{sub}</p>
