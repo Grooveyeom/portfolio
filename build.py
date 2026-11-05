@@ -221,8 +221,7 @@ def am(root, other):
     out += sh("allocate", "1 · Prioritise", "47% of renewal value sits in 16% of accounts",
         "Those accounts get my personal time every week.")
     out += f'<div class="g g-21">{ALLOCATE}{TARGETING}</div>\n</section>\n'
-    out += sh("grow", "2 · Grow", "55% of new revenue came from renewal uplift",
-        "The rest: expansion in existing accounts (US$139K) and new customers (US$28K).")
+    out += sh("grow", "2 · Grow", "US$373K added across 342 deals in 2026")
     out += f'<div class="g g-21">{SOURCE}{ESIGN}</div>\n</section>\n'
     out += sh("risk", "3 · Retain", "Earlier contact, capped price increases")
     out += RISK + "\n</section>\n"
