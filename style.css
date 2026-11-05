@@ -225,3 +225,22 @@ footer{padding:88px 0 40px}
 .mix b{display:block;margin-top:6px;font-size:24px;line-height:1.2;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .mix span{display:block;margin-top:2px;font-size:13px;color:var(--muted)}
 @media (max-width:520px){.mix{grid-template-columns:1fr;gap:14px}}
+/* renewal process: one row per step, evidence on the right */
+.proc{display:grid;gap:16px}
+.proc .st{display:grid;grid-template-columns:44px minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px}
+.proc .num{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:16px}
+.proc h3{font-size:18px;line-height:1.4;font-weight:600}
+.proc .d{margin-top:8px;font-size:15px;line-height:1.7;color:var(--ink2)}
+.proc .ev{padding-left:24px;border-left:1px solid var(--line2)}
+.proc .cap{margin:0 0 4px;font-size:13px;color:var(--muted)}
+.proc .ev .hbars{margin-top:8px}
+.proc .rule{margin-top:8px;padding:14px 16px;border-radius:10px;background:var(--bg);font-size:15px;font-weight:600;line-height:1.5;color:var(--ink)}
+.case .outcome{margin-top:20px;padding:14px 18px;border-radius:10px;background:var(--accent-soft);font-size:15px;font-weight:600;line-height:1.5;color:var(--ink)}
+@media (max-width:900px){
+  .proc .st{grid-template-columns:40px minmax(0,1fr);gap:16px 18px}
+  .proc .ev{grid-column:2;padding-left:0;border-left:0;padding-top:16px;border-top:1px solid var(--line2)}
+}
+@media (max-width:520px){
+  .proc .st{grid-template-columns:1fr;padding:20px}
+  .proc .ev{grid-column:1}
+}
