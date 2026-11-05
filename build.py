@@ -193,6 +193,34 @@ OBJECTION = """<div class="case">
     <p class="outcome">When an objection resolved, it was usually through a seat, tier or term change, not a price cut. Example: the wealth manager deal below.</p>
   </div>"""
 
+NEWBIZ = '<div class="proc">' + "".join([
+  proc_step(1, "Research before outreach",
+    "I map each account first: who buys, what they run today, and a reason to talk now.",
+    "Atlassian outbound campaign",
+    '<div class="big" style="margin-top:0"><b>170 → 10</b><span>accounts researched → qualified opportunities. #2 in APJ.</span></div>'),
+  proc_step(2, "Find the real need",
+    "Discovery comes before the demo, so the demo answers their problem, not a feature list.",
+    "Kiosk maker, Korea (TeamViewer)",
+    '<p class="rule">They needed remote access inside their own meal-ticket and booking kiosks. The demo covered that use case.</p>'),
+  proc_step(3, "Trial with a decision date",
+    "I tie each trial to an agreed decision date, and act fast when it stalls.",
+    "Risk-services firm, DocuSign replaced (Nitro)",
+    '<div class="big" style="margin-top:0"><b>7 days</b><span>from opportunity to a 3-year Enterprise contract. Lapsed trial reissued within an hour.</span></div>'),
+  proc_step(4, "A dated plan to the PO",
+    "Quote, reseller, purchase order and licences each get a date in a written plan.",
+    "Aerospace group, Adobe replaced, 95 seats (Nitro)",
+    '<p class="rule">PO arrived on the planned day. Other subsidiaries are working from the same plan.</p>'),
+  proc_step(5, "Land, then expand",
+    "The first deal is the start, not the finish.",
+    "Kiosk maker, Korea (TeamViewer)",
+    '<div class="big" style="margin-top:0"><b>Year 2</b><span>added devices and upgraded, after a first deal of about €7K</span></div>'),
+]) + "</div>"
+
+NEWBIZ_RESULTS = """<div class="g g-11" style="margin-top:var(--gap)">
+    <div class="card"><h3>Net-new quota, TeamViewer</h3><div class="big"><b>4 yrs</b><span>above 100%, Account Executive to Sales Lead</span></div><p class="t">Own deals up to €25K. Top five in APAC in year one.</p></div>
+    <div class="card"><h3>New customers, Nitro</h3><div class="big"><b>12</b><span>new accounts in 2026</span></div><p class="t">In an installed-base role. Includes the Adobe and DocuSign replacements.</p></div>
+  </div>"""
+
 PEOPLE = """<div class="g g-111">
     <div class="card"><h3>Partners and other teams</h3><div class="mini"><div><b>Resellers and distributors</b>Briefed before the customer; PO chased with the partner</div><div><b>Solutions engineers</b>Trials, SSO and integration scoping, with a decision date</div></div></div>
     <div class="card"><h3>Peers and leadership</h3><div class="mini"><div><b>Led a team of five</b>1:1s, pipeline and performance reviews, hiring panels</div><div><b>Mentored 15 colleagues</b>on deal execution</div></div></div>
@@ -251,33 +279,24 @@ def am(root, other):
 # ---------- AE page ----------
 
 def ae(root, other):
-    out = HEAD.format(title="Account Executive", desc="Jeonghun Yeom, B2B software Account Executive in Melbourne. New business, competitive wins and territory management, shown in numbers.", root=root)
+    out = HEAD.format(title="Account Executive", desc="Jeonghun Yeom, B2B software Account Executive in Melbourne. How I win new accounts, step by step, with the numbers.", root=root)
     out += top("Account Executive", other, "AM version")
-    out += hero("I open new accounts, then grow them.",
+    out += hero("I win new accounts with research and a dated plan.",
         "Four years above net-new ARR quota at TeamViewer. Adobe and DocuSign replacements at Nitro. 7+ years in B2B sales.",
         [("100%+", "of net-new ARR quota, four years running", "TeamViewer, 2020–2024"),
          ("€189K", "enterprise opportunity I sourced", "TeamViewer, new product line"),
          ("2", "competitive replacements: Adobe, DocuSign", "Nitro, 2026, both new accounts"),
          ("97%", "of expansion quota, Q3 2026", "Nitro, after 106% in the ramp quarter")],
-        [("new", "New business", "Quota and targeting"), ("case", "Cases", "Two sales, step by step"),
-         ("objection", "Objections", "Scope, not price"), ("deals", "Deals", "Four customer deals"),
-         ("territory", "Results", "Quota and ramp")])
-    out += sh("new", "1 · New business", "Four years above net-new quota",
-        "Research the account, find the need, agree the next decision date.")
-    out += f"""<div class="g g-111">
-    <div class="card"><h3>Net-new quota</h3><div class="big"><b>4 yrs</b><span>above 100%, AE to Sales Lead</span></div><p class="t">TeamViewer net-new ARR. Own deals up to €25K. Top five in APAC in year one.</p></div>
-    <div class="card"><h3>Targeting</h3><div class="big"><b>170 → 10</b><span>accounts researched → qualified opportunities</span></div><p class="t">Atlassian, one campaign. #2 in APJ.</p></div>
-    <div class="card"><h3>New customers at Nitro</h3><div class="big"><b>12</b><span>new accounts in 2026</span></div><p class="t">In an installed-base role. Includes the Adobe and DocuSign replacements.</p></div>
-  </div>
-</section>
-"""
+        [("process", "New business", "My five-step process"), ("case", "Cases", "Two sales, step by step"),
+         ("deals", "Deals", "Four customer deals"), ("territory", "Results", "Quota and ramp")])
+    out += sh("process", "1 · New business", "How I win a new account, step by step",
+        "Each step with a deal where it made the difference.")
+    out += NEWBIZ + "\n</section>\n"
     out += sh("case", "2 · Cases", "One sale end to end, one enterprise deal sourced") + FULL_CASE + TV_CASE + "\n</section>\n"
-    out += sh("objection", "3 · Objections", "When price is challenged, I change the scope, not the price")
-    out += OBJECTION + "\n</section>\n"
-    out += sh("deals", "4 · Deals", "Four deals: what I did and the result")
+    out += sh("deals", "3 · Deals", "Four deals: what I did and the result")
     out += deals([1, 2, 0, 3]) + "\n</section>\n"
-    out += sh("territory", "5 · Results", "Above quota four years running; 97% in Q3 at Nitro")
-    out += f'<div class="g g-11">{QUOTA}{RAMP}</div>\n' + '<div style="margin-top:var(--gap)">' + SOURCE + "</div>\n</section>\n"
+    out += sh("territory", "4 · Results", "Above quota four years running; 97% in Q3 at Nitro")
+    out += f'<div class="g g-11">{QUOTA}{RAMP}</div>\n' + NEWBIZ_RESULTS + "\n</section>\n"
     out += sh("people", "Working style", "How I work with people") + PEOPLE + "\n</section>\n"
     out += sh("career", "Experience", "Selected experience", "Full history on my CV and LinkedIn.") + CAREER + "\n</section>\n"
     return out + foot(root, other, "View the AM version")
